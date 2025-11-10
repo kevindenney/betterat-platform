@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "incremental": true,
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@betterat/core": ["./packages/core/src"],
+      "@betterat/core/*": ["./packages/core/src/*"],
+      "@betterat/ui": ["./packages/ui/src"],
+      "@betterat/ui/*": ["./packages/ui/src/*"],
+      "@betterat/domain-sdk": ["./packages/domain-sdk/src"],
+      "@betterat/domain-sdk/*": ["./packages/domain-sdk/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "build"]
+}
