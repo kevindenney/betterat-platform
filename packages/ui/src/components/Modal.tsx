@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ViewStyle,
   Pressable,
+  Platform,
 } from 'react-native';
 import { colors } from '../theme/colors';
 import { fontSizes, fontWeights } from '../theme/typography';
@@ -59,6 +60,13 @@ export const Modal: React.FC<ModalProps> = ({
   );
 };
 
+const baseContentStyle = {
+  backgroundColor: colors.white,
+  borderTopLeftRadius: 20,
+  borderTopRightRadius: 20,
+  maxHeight: '90%' as const,
+};
+
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
@@ -69,20 +77,22 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black,
     opacity: 0.5,
   },
-  content: {
-    backgroundColor: colors.white,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    maxHeight: '90%',
-    shadowColor: colors.black,
-    shadowOffset: {
-      width: 0,
-      height: -4,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 10,
-  },
+  content: Platform.OS === 'web'
+    ? {
+        ...baseContentStyle,
+        boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)' as any,
+      }
+    : {
+        ...baseContentStyle,
+        shadowColor: colors.black,
+        shadowOffset: {
+          width: 0,
+          height: -4,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+        elevation: 10,
+      },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',

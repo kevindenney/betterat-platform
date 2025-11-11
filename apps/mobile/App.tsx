@@ -4,7 +4,6 @@ import { registerDomain, getDomain } from '@betterat/core';
 import testDomain from '@betterat/domains-test';
 import type { PlatformServices } from '@betterat/domain-sdk';
 
-// Mock platform services for testing
 const mockServices: PlatformServices = {
   user: {
     getCurrentUser: async () => ({ id: 'test-user', email: 'test@example.com', name: 'Test User' }),
@@ -15,18 +14,48 @@ const mockServices: PlatformServices = {
     activities: {
       list: async () => [],
       get: async () => null,
-      create: async (data) => ({ id: '1', userId: 'test-user', domainId: 'test', activityTypeId: data.activityTypeId, metadata: data.metadata, createdAt: new Date(), updatedAt: new Date() }),
-      update: async (id, data) => ({ id, userId: 'test-user', domainId: 'test', activityTypeId: 'test', metadata: data.metadata || {}, createdAt: new Date(), updatedAt: new Date() }),
+      create: async (data) => ({
+        id: '1',
+        userId: 'test-user',
+        domainId: data.domainId,
+        activityTypeId: data.activityTypeId,
+        metadata: data.metadata,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }),
+      update: async (id, data) => ({
+        id,
+        userId: 'test-user',
+        domainId: 'test',
+        activityTypeId: 'test',
+        metadata: data.metadata || {},
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }),
       delete: async () => {},
     },
     metrics: {
       list: async () => [],
-      record: async () => ({ id: '1', userId: 'test-user', domainId: 'test', metricId: 'test', value: 0, timestamp: new Date() }),
+      record: async () => ({
+        id: '1',
+        userId: 'test-user',
+        domainId: 'test',
+        metricId: 'test',
+        value: 0,
+        timestamp: new Date(),
+      }),
     },
     sessions: {
       list: async () => [],
       get: async () => null,
-      create: async () => ({ id: '1', userId: 'test-user', domainId: 'test', agentId: 'test', messages: [], startedAt: new Date() }),
+      create: async () => ({
+        id: '1',
+        userId: 'test-user',
+        domainId: 'test',
+        agentId: 'test',
+        messages: [],
+        startedAt: new Date(),
+      }),
       addMessage: async () => {},
       end: async () => {},
     },
@@ -49,9 +78,9 @@ const mockServices: PlatformServices = {
     },
   },
   navigation: {
-    navigate: () => console.log('Navigate'),
-    goBack: () => console.log('Go back'),
-    reset: () => console.log('Reset'),
+    navigate: () => {},
+    goBack: () => {},
+    reset: () => {},
   },
 };
 
@@ -59,35 +88,44 @@ export default function App() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    // Register the test domain
     registerDomain(testDomain);
     console.log('✅ Test domain registered:', testDomain.meta.name);
-
-    // Mark as loaded
     setLoaded(true);
   }, []);
 
   if (!loaded) {
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.loadingText}>Loading BetterAt Platform...</Text>
+        <View style={styles.centerContent}>
+          <Text style={styles.loadingText}>Loading BetterAt Platform...</Text>
+        </View>
       </SafeAreaView>
     );
   }
 
-  // Get the registered domain
   const domain = getDomain('test');
 
   if (!domain) {
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.errorText}>❌ Domain not found</Text>
+        <View style={styles.centerContent}>
+          <Text style={styles.errorText}>❌ Domain not found</Text>
+        </View>
       </SafeAreaView>
     );
   }
 
-  // Get the Dashboard component from the domain
   const Dashboard = domain.components.Dashboard;
+
+  if (!Dashboard) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.centerContent}>
+          <Text style={styles.errorText}>❌ Domain has no Dashboard</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -96,15 +134,11 @@ export default function App() {
       {/* Platform Header */}
       <View style={styles.header}>
         <Text style={styles.title}>🚀 BetterAt Platform</Text>
-        <Text style={styles.subtitle}>Loaded: {domain.meta.name}</Text>
+        <Text style={styles.subtitle}>Day 3 Prototype</Text>
       </View>
 
-      {/* Domain Dashboard */}
       <View style={styles.content}>
-        <Dashboard
-          userId="test-user"
-          services={mockServices}
-        />
+        <Dashboard userId="test-user" services={mockServices} />
       </View>
     </SafeAreaView>
   );
@@ -115,27 +149,32 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  centerContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   loadingText: {
     fontSize: 18,
-    textAlign: 'center',
-    marginTop: 100,
     color: '#666',
+    textAlign: 'center',
   },
   errorText: {
     fontSize: 18,
-    textAlign: 'center',
-    marginTop: 100,
     color: '#EF4444',
+    textAlign: 'center',
   },
   header: {
+    width: '100%',
     padding: 20,
     paddingTop: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#E5E7EB',
     backgroundColor: '#F9FAFB',
+    alignItems: 'center',
   },
   title: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#111827',
     marginBottom: 4,
@@ -146,5 +185,6 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    width: '100%',
   },
 });

@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["ES2020"],
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "lib": [
+      "ES2020"
+    ],
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "allowJs": true,
     "noEmit": true,
@@ -18,13 +20,30 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@betterat/core": ["./packages/core/src"],
-      "@betterat/core/*": ["./packages/core/src/*"],
-      "@betterat/ui": ["./packages/ui/src"],
-      "@betterat/ui/*": ["./packages/ui/src/*"],
-      "@betterat/domain-sdk": ["./packages/domain-sdk/src"],
-      "@betterat/domain-sdk/*": ["./packages/domain-sdk/src/*"]
+      "@betterat/core": [
+        "./packages/core/src"
+      ],
+      "@betterat/core/*": [
+        "./packages/core/src/*"
+      ],
+      "@betterat/ui": [
+        "./packages/ui/src"
+      ],
+      "@betterat/ui/*": [
+        "./packages/ui/src/*"
+      ],
+      "@betterat/domain-sdk": [
+        "./packages/domain-sdk/src"
+      ],
+      "@betterat/domain-sdk/*": [
+        "./packages/domain-sdk/src/*"
+      ]
     }
   },
-  "exclude": ["node_modules", "dist", "build"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build"
+  ],
+  "extends": "expo/tsconfig.base"
 }

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ViewStyle,
   GestureResponderEvent,
+  Platform,
 } from 'react-native';
 import { colors } from '../theme/colors';
 import { spacing } from '../theme/spacing';
@@ -16,7 +17,8 @@ export interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({ children, onPress, style }) => {
-  const cardStyle = [styles.card, style].filter(Boolean);
+  const baseCardStyle = Platform.OS === 'web' ? styles.cardWeb : styles.cardNative;
+  const cardStyle = [baseCardStyle, style].filter(Boolean);
 
   if (onPress) {
     return (
@@ -35,11 +37,19 @@ export const Card: React.FC<CardProps> = ({ children, onPress, style }) => {
   return <View style={cardStyle}>{children}</View>;
 };
 
+const baseCardStyle = {
+  backgroundColor: colors.white,
+  borderRadius: 12,
+  padding: spacing.md,
+};
+
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: colors.white,
-    borderRadius: 12,
-    padding: spacing.md,
+  cardWeb: {
+    ...baseCardStyle,
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' as any,
+  },
+  cardNative: {
+    ...baseCardStyle,
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
