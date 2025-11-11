@@ -20,6 +20,11 @@
     "typescript": "^5.7.2",
     "prettier": "^3.4.2"
   },
+  "overrides": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.76.5"
+  },
   "packageManager": "npm@10.9.2",
   "engines": {
     "node": ">=18.0.0"
