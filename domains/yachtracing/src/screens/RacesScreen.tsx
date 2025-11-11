@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -15,10 +15,13 @@ import { DomainDashboardProps } from '@betterat/domain-sdk';
 import theme from '../theme';
 import RaceCard from '../components/RaceCard';
 import RaceDetail from '../components/RaceDetail';
+import RaceCardSkeleton from '../components/skeletons/RaceCardSkeleton';
+import RaceDetailSkeleton from '../components/skeletons/RaceDetailSkeleton';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const CARD_WIDTH = 280;
 const CARD_SPACING = theme.spacing.xl;
+const SKELETON_PLACEHOLDERS = ['race-skeleton-1', 'race-skeleton-2', 'race-skeleton-3'];
 
 // ============================================================================
 // Types
@@ -153,18 +156,39 @@ const MOCK_RACES: RaceData[] = [
 // ============================================================================
 
 export const RacesScreen: React.FC<DomainDashboardProps> = ({ userId, services }) => {
-  const [selectedRaceId, setSelectedRaceId] = useState<string | null>(
-    MOCK_RACES.length > 0 ? MOCK_RACES[0].id : null
-  );
-  const [races] = useState<RaceData[]>(MOCK_RACES);
+  const [selectedRaceId, setSelectedRaceId] = useState<string | null>(null);
+  const [races, setRaces] = useState<RaceData[]>([]);
   const [isOffline] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Refs
   const flatListRef = useRef<FlatList>(null);
+  const loadTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const detailFadeAnim = useRef(new Animated.Value(0)).current;
 
   const selectedRace = races.find(race => race.id === selectedRaceId);
+
+  const loadRaces = useCallback((delay = 1500) => {
+    if (loadTimeoutRef.current) {
+      clearTimeout(loadTimeoutRef.current);
+    }
+    loadTimeoutRef.current = setTimeout(() => {
+      setRaces(MOCK_RACES);
+      setSelectedRaceId(MOCK_RACES.length > 0 ? MOCK_RACES[0].id : null);
+      setIsLoading(false);
+      setRefreshing(false);
+    }, delay);
+  }, []);
+
+  useEffect(() => {
+    loadRaces();
+    return () => {
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
+    };
+  }, [loadRaces]);
 
   // Fade in detail canvas when race is selected
   useEffect(() => {
@@ -201,10 +225,10 @@ export const RacesScreen: React.FC<DomainDashboardProps> = ({ userId, services }
 
   const handleRefresh = () => {
     setRefreshing(true);
-    // Simulate refresh
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 1500);
+    setIsLoading(true);
+    setRaces([]);
+    setSelectedRaceId(null);
+    loadRaces(1500);
   };
 
   const handleRacePress = (raceId: string, index: number) => {
@@ -231,8 +255,8 @@ export const RacesScreen: React.FC<DomainDashboardProps> = ({ userId, services }
     );
   };
 
-  // Empty state
-  if (races.length === 0) {
+  // Empty state (after loading completes)
+  if (!isLoading && races.length === 0) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.emptyState}>
@@ -332,50 +356,70 @@ export const RacesScreen: React.FC<DomainDashboardProps> = ({ userId, services }
         {/* HORIZONTAL CAROUSEL */}
         <View style={styles.carouselContainer}>
           <Text style={styles.sectionTitle}>Your Races</Text>
-          <FlatList
-            ref={flatListRef}
-            horizontal
-            data={races}
-            renderItem={renderRaceCard}
-            keyExtractor={(item) => item.id}
-            showsHorizontalScrollIndicator={false}
-            snapToInterval={CARD_WIDTH + CARD_SPACING}
-            decelerationRate="fast"
-            contentContainerStyle={styles.carouselContent}
-            onScrollToIndexFailed={(info) => {
-              // Handle scroll failure gracefully
-              const wait = new Promise(resolve => setTimeout(resolve, 500));
-              wait.then(() => {
-                flatListRef.current?.scrollToIndex({
-                  index: info.index,
-                  animated: true,
-                  viewPosition: 0.5,
+          {isLoading ? (
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.carouselContent}
+            >
+              {SKELETON_PLACEHOLDERS.map((key) => (
+                <View key={key} style={{ marginHorizontal: CARD_SPACING / 2 }}>
+                  <RaceCardSkeleton />
+                </View>
+              ))}
+            </ScrollView>
+          ) : (
+            <FlatList
+              ref={flatListRef}
+              horizontal
+              data={races}
+              renderItem={renderRaceCard}
+              keyExtractor={(item) => item.id}
+              showsHorizontalScrollIndicator={false}
+              snapToInterval={CARD_WIDTH + CARD_SPACING}
+              decelerationRate="fast"
+              contentContainerStyle={styles.carouselContent}
+              onScrollToIndexFailed={(info) => {
+                // Handle scroll failure gracefully
+                const wait = new Promise(resolve => setTimeout(resolve, 500));
+                wait.then(() => {
+                  flatListRef.current?.scrollToIndex({
+                    index: info.index,
+                    animated: true,
+                    viewPosition: 0.5,
+                  });
                 });
-              });
-            }}
-          />
+              }}
+            />
+          )}
         </View>
 
         {/* DETAIL CANVAS */}
-        {selectedRace && (
-          <Animated.View
-            style={[
-              styles.detailCanvas,
-              {
-                opacity: detailFadeAnim,
-                transform: [
-                  {
-                    translateY: detailFadeAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [20, 0],
-                    }),
-                  },
-                ],
-              },
-            ]}
-          >
-            <RaceDetail race={selectedRace} />
-          </Animated.View>
+        {isLoading ? (
+          <View style={styles.detailCanvas}>
+            <RaceDetailSkeleton />
+          </View>
+        ) : (
+          selectedRace && (
+            <Animated.View
+              style={[
+                styles.detailCanvas,
+                {
+                  opacity: detailFadeAnim,
+                  transform: [
+                    {
+                      translateY: detailFadeAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [20, 0],
+                      }),
+                    },
+                  ],
+                },
+              ]}
+            >
+              <RaceDetail race={selectedRace} />
+            </Animated.View>
+          )
         )}
       </ScrollView>
 

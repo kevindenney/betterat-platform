@@ -166,6 +166,8 @@ const RaceDetail: React.FC<RaceDetailProps> = ({ race }) => {
   // ============================================================================
 
   if (race.status === 'upcoming') {
+    const shouldAutoExpandAiStrategy = Boolean(race.aiStrategy && race.aiStrategy.trim().length > 0);
+
     return (
       <View style={styles.container}>
         {/* Overview Card */}
@@ -185,8 +187,13 @@ const RaceDetail: React.FC<RaceDetailProps> = ({ race }) => {
           </View>
         </Card>
 
-        {/* AI Strategy Section */}
-        <CollapsibleSection title="AI-Generated Strategy" icon="🤖" defaultExpanded={true}>
+        {/* AI Strategy Section - PRIORITY: Auto-expanded for immediate visibility */}
+        <CollapsibleSection
+          key={`ai-strategy-${race.id}-${shouldAutoExpandAiStrategy ? 'expanded' : 'collapsed'}`}
+          title="AI-Generated Strategy"
+          icon="🤖"
+          defaultExpanded={shouldAutoExpandAiStrategy}
+        >
           <View style={styles.aiStrategyContainer}>
             <Text style={styles.strategyText}>
               {race.aiStrategy ||
@@ -200,7 +207,7 @@ const RaceDetail: React.FC<RaceDetailProps> = ({ race }) => {
         </CollapsibleSection>
 
         {/* Weather & Conditions */}
-        <CollapsibleSection title="Weather & Conditions" icon="🌤️" defaultExpanded={true}>
+        <CollapsibleSection title="Weather & Conditions" icon="🌤️" defaultExpanded={false}>
           <View style={styles.weatherGrid}>
             <View style={styles.weatherItem}>
               <Text style={styles.weatherLabel}>Wind</Text>
