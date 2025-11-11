@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -11,12 +11,16 @@ import {
   Animated,
   RefreshControl,
 } from 'react-native';
+import { useQuery } from '@tanstack/react-query';
 import { DomainDashboardProps } from '@betterat/domain-sdk';
 import theme from '../theme';
 import RaceCard from '../components/RaceCard';
 import RaceDetail from '../components/RaceDetail';
 import RaceCardSkeleton from '../components/skeletons/RaceCardSkeleton';
 import RaceDetailSkeleton from '../components/skeletons/RaceDetailSkeleton';
+import AddRaceModal, { NewRaceData } from '../components/AddRaceModal';
+import { fetchRecentRaces } from '../services/raceService';
+import { transformRacesToUI } from '../utils/transformRaceData';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const CARD_WIDTH = 280;
@@ -157,38 +161,32 @@ const MOCK_RACES: RaceData[] = [
 
 export const RacesScreen: React.FC<DomainDashboardProps> = ({ userId, services }) => {
   const [selectedRaceId, setSelectedRaceId] = useState<string | null>(null);
-  const [races, setRaces] = useState<RaceData[]>([]);
-  const [isOffline] = useState(false);
-  const [refreshing, setRefreshing] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [showAddRaceModal, setShowAddRaceModal] = useState(false);
+
+  // Fetch races from Supabase using TanStack Query
+  const { data: racesData, isLoading, error, refetch, isFetching } = useQuery({
+    queryKey: ['races', userId],
+    queryFn: fetchRecentRaces,
+    refetchInterval: 30000, // Refresh every 30 seconds
+    retry: 3,
+  });
+
+  // Transform Supabase data to UI format
+  const races = racesData ? transformRacesToUI(racesData) : MOCK_RACES;
 
   // Refs
   const flatListRef = useRef<FlatList>(null);
-  const loadTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const detailFadeAnim = useRef(new Animated.Value(0)).current;
 
   const selectedRace = races.find(race => race.id === selectedRaceId);
+  const isOffline = error !== null;
 
-  const loadRaces = useCallback((delay = 1500) => {
-    if (loadTimeoutRef.current) {
-      clearTimeout(loadTimeoutRef.current);
-    }
-    loadTimeoutRef.current = setTimeout(() => {
-      setRaces(MOCK_RACES);
-      setSelectedRaceId(MOCK_RACES.length > 0 ? MOCK_RACES[0].id : null);
-      setIsLoading(false);
-      setRefreshing(false);
-    }, delay);
-  }, []);
-
+  // Auto-select first race when data loads
   useEffect(() => {
-    loadRaces();
-    return () => {
-      if (loadTimeoutRef.current) {
-        clearTimeout(loadTimeoutRef.current);
-      }
-    };
-  }, [loadRaces]);
+    if (races.length > 0 && !selectedRaceId) {
+      setSelectedRaceId(races[0].id);
+    }
+  }, [races, selectedRaceId]);
 
   // Fade in detail canvas when race is selected
   useEffect(() => {
@@ -211,6 +209,22 @@ export const RacesScreen: React.FC<DomainDashboardProps> = ({ userId, services }
   const handleAddRace = () => {
     console.log('Add race clicked');
     services.analytics.trackEvent('add_race_clicked', { userId });
+    setShowAddRaceModal(true);
+  };
+
+  const handleCreateRace = async (newRaceData: NewRaceData) => {
+    // TODO: Implement createRace in raceService to save to Supabase
+    // For now, just close the modal and refetch data
+    console.log('Create race:', newRaceData);
+
+    // Close modal
+    setShowAddRaceModal(false);
+
+    // Track analytics
+    services.analytics.trackEvent('race_created', { userId });
+
+    // Refetch races to show new data
+    await refetch();
   };
 
   const handleAICoach = () => {
@@ -223,12 +237,8 @@ export const RacesScreen: React.FC<DomainDashboardProps> = ({ userId, services }
     services.analytics.trackEvent('notifications_clicked', { userId });
   };
 
-  const handleRefresh = () => {
-    setRefreshing(true);
-    setIsLoading(true);
-    setRaces([]);
-    setSelectedRaceId(null);
-    loadRaces(1500);
+  const handleRefresh = async () => {
+    await refetch();
   };
 
   const handleRacePress = (raceId: string, index: number) => {
@@ -281,7 +291,7 @@ export const RacesScreen: React.FC<DomainDashboardProps> = ({ userId, services }
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
-            refreshing={refreshing}
+            refreshing={isFetching}
             onRefresh={handleRefresh}
             tintColor={theme.colors.primary}
             colors={[theme.colors.primary]}
@@ -440,6 +450,13 @@ export const RacesScreen: React.FC<DomainDashboardProps> = ({ userId, services }
       >
         <Text style={styles.fabAIIcon}>🤖</Text>
       </TouchableOpacity>
+
+      {/* ADD RACE MODAL */}
+      <AddRaceModal
+        visible={showAddRaceModal}
+        onClose={() => setShowAddRaceModal(false)}
+        onCreateRace={handleCreateRace}
+      />
     </SafeAreaView>
   );
 };

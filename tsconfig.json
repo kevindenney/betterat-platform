@@ -37,6 +37,12 @@
       ],
       "@betterat/domain-sdk/*": [
         "./packages/domain-sdk/src/*"
+      ],
+      "@betterat/ai": [
+        "./packages/ai/src"
+      ],
+      "@betterat/ai/*": [
+        "./packages/ai/src/*"
       ]
     }
   },

@@ -1,0 +1,8 @@
+{
+  "ios": {
+    "bundleIdentifier": "com.denneyke.betterat-platform"
+  },
+  "android": {
+    "package": "com.denneyke.betteratplatform"
+  }
+}

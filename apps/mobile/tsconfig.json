@@ -1,6 +1,17 @@
 {
-  "extends": "expo/tsconfig.base",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "jsx": "react-jsx"
+  },
+  "include": [
+    ".",
+    "../../domains/yachtracing/src/**/*",
+    "../../domains/test/src/**/*"
+  ],
+  "references": [
+    { "path": "../../packages/core" },
+    { "path": "../../packages/ui" },
+    { "path": "../../packages/domain-sdk" }
+  ]
 }

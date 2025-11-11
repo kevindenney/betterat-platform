@@ -1,0 +1,37 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@betterat/core": ["../../packages/core/src"],
+      "@betterat/core/*": ["../../packages/core/src/*"],
+      "@betterat/ui": ["../../packages/ui/src"],
+      "@betterat/ui/*": ["../../packages/ui/src/*"],
+      "@betterat/domain-sdk": ["../../packages/domain-sdk/src"],
+      "@betterat/domain-sdk/*": ["../../packages/domain-sdk/src/*"],
+      "@betterat/ai": ["../../packages/ai/src"],
+      "@betterat/ai/*": ["../../packages/ai/src/*"]
+    },
+    "noImplicitAny": false,
+    "types": ["nativewind/types"],
+    "lib": ["ES2020", "DOM"]
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./**/*.js",
+    "./**/*.jsx",
+    "./**/*.json",
+    "global.d.ts",
+    "nativewind-env.d.ts",
+    "../../packages/core/src/**/*.ts",
+    "../../packages/core/src/**/*.tsx",
+    "../../packages/ui/src/**/*.ts",
+    "../../packages/ui/src/**/*.tsx"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}

@@ -11,10 +11,12 @@
   "dependencies": {
     "@betterat/core": "*",
     "@betterat/domain-sdk": "*",
+    "@betterat/ai": "*",
     "@betterat/domains-test": "*",
     "@betterat/ui": "*",
-    "@react-navigation/native": "^7.0.13",
     "@react-navigation/bottom-tabs": "^7.2.0",
+    "@react-navigation/native": "^7.0.13",
+    "@tanstack/react-query": "^5.90.7",
     "expo": "~54.0.23",
     "expo-linear-gradient": "~14.0.1",
     "expo-status-bar": "~3.0.8",
