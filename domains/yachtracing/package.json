@@ -1,0 +1,25 @@
+{
+  "name": "@betterat/domains-yachtracing",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@betterat/domain-sdk": "*",
+    "@betterat/ui": "*",
+    "zod": "^3.24.1"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-native": "^0.76.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "typescript": "^5.7.2"
+  }
+}

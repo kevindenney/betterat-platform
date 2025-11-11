@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, StatusBar } from 'react-native';
 import { registerDomain, getDomain } from '@betterat/core';
 import testDomain from '@betterat/domains-test';
+import yachtRacingDomain from '@betterat/domains-yachtracing';
 import type { PlatformServices } from '@betterat/domain-sdk';
 
 const mockServices: PlatformServices = {
@@ -89,7 +90,9 @@ export default function App() {
 
   useEffect(() => {
     registerDomain(testDomain);
+    registerDomain(yachtRacingDomain);
     console.log('✅ Test domain registered:', testDomain.meta.name);
+    console.log('✅ Yacht Racing domain registered:', yachtRacingDomain.meta.name);
     setLoaded(true);
   }, []);
 
@@ -103,7 +106,7 @@ export default function App() {
     );
   }
 
-  const domain = getDomain('test');
+  const domain = getDomain('yachtracing');
 
   if (!domain) {
     return (
