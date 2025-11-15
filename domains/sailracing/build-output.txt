@@ -1,0 +1,75 @@
+
+> @betterat/domains-sailracing@1.0.0 build
+> tsc
+
+src/app-screens/(tabs)/venue.tsx(25,31): error TS2724: '"@/components/venue/NetworkSidebar"' has no exported member named 'NetworkSidebarPlace'. Did you mean 'NetworkSidebar'?
+src/app-screens/(tabs)/venue.tsx(30,8): error TS2307: Cannot find module '@/components/venue/VenueIntelSummary' or its corresponding type declarations.
+src/app-screens/(tabs)/venue.tsx(753,7): error TS2322: Type '{ searchQuery: string; onSearchQueryChange: Dispatch<SetStateAction<string>>; searchResults: NetworkSidebarPlace[]; savedPlaces: NetworkSidebarPlace[]; isSearching: boolean; isLoadingSaved: boolean; isCollapsed: boolean; onToggleCollapse: () => void; onPlacePress: (place: NetworkPlace) => void; onSaveToggle: (place:...' is not assignable to type 'IntrinsicAttributes & NetworkSidebarProps'.
+  Property 'searchQuery' does not exist on type 'IntrinsicAttributes & NetworkSidebarProps'.
+src/app-screens/(tabs)/venue.tsx(773,22): error TS7006: Parameter 'place' implicitly has an 'any' type.
+src/app-screens/(tabs)/venue.tsx(773,29): error TS7006: Parameter 'nextSaved' implicitly has an 'any' type.
+src/app-screens/(tabs)/venue.tsx(845,9): error TS2322: Type '{ overview: { hero: { venueName: any; country: any; region: any; distanceLabel: string | undefined; windSummary: any; travelTip: any; onSave: () => void; isSaved: boolean; latitude: any; longitude: any; } | { ...; }; stats: VenueIntelStat[]; checklist: VenueIntelChecklistSection[]; chips: { ...; }; children: Element...' is not assignable to type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+  Property 'overview' does not exist on type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+src/app-screens/club-dashboard.tsx(11,22): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/app-screens/club-dashboard.tsx(45,8): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/app-screens/club-dashboard.tsx(85,27): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(203,79): error TS7006: Parameter 'regatta' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(234,33): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(323,50): error TS7006: Parameter 'bucket' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(353,38): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(383,39): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(439,36): error TS7006: Parameter 'document' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(471,33): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(586,18): error TS7006: Parameter 'a' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(586,21): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(598,31): error TS7006: Parameter 'member' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(664,70): error TS7006: Parameter 'regatta' implicitly has an 'any' type.
+src/app-screens/venue-verification.tsx(14,15): error TS2724: '"@/components/venue/TravelResourceChips"' has no exported member named 'TravelResourceChipsProps'. Did you mean 'TravelResourceChips'?
+src/app-screens/venue-verification.tsx(542,7): error TS2322: Type '{ overview: { hero: { venueName: string; country: string; region: string; travelTip: string; windSummary: string; onSave: () => void; isSaved: boolean; latitude: number; longitude: number; }; stats: { id: string; label: string; value: string; detail: string; icon: string; }[]; checklist: { ...; }[]; chips: { ...; };...' is not assignable to type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+  Property 'overview' does not exist on type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+src/app-screens/venue-verification.tsx(546,25): error TS7006: Parameter 'venue' implicitly has an 'any' type.
+src/components/map/Bathymetry3DViewer.tsx(4,47): error TS2307: Cannot find module '@/lib/types/advanced-map' or its corresponding type declarations.
+src/index.tsx(10,24): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/screens/EventsScreen.tsx(13,8): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/screens/EventsScreen.tsx(92,36): error TS2554: Expected 0 arguments, but got 1.
+src/screens/RacesScreen.tsx(17,29): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/screens/RacesScreen.tsx(18,27): error TS2307: Cannot find module '@betterat/ui/components/shared/TimelineStrip' or its corresponding type declarations.
+src/screens/RacesScreen.tsx(478,73): error TS7006: Parameter 'value' implicitly has an 'any' type.
+src/screens/VenueScreen.tsx(5,70): error TS2307: Cannot find module '@/components/venue/VenueIntelSummary' or its corresponding type declarations.
+src/screens/VenueScreen.tsx(10,8): error TS2724: '"@/components/venue/NetworkSidebar"' has no exported member named 'NetworkSidebarPlace'. Did you mean 'NetworkSidebar'?
+src/screens/VenueScreen.tsx(164,7): error TS2322: Type '{ searchQuery: string; onSearchQueryChange: Dispatch<SetStateAction<string>>; searchResults: any[]; savedPlaces: any[]; isSearching: boolean; isLoadingSaved: boolean; isCollapsed: boolean; onToggleCollapse: () => void; onPlacePress: (place: NetworkSidebarPlace) => void; onSaveToggle: (place: any, nextSaved: any) => ...' is not assignable to type 'IntrinsicAttributes & NetworkSidebarProps'.
+  Property 'searchQuery' does not exist on type 'IntrinsicAttributes & NetworkSidebarProps'.
+src/screens/VenueScreen.tsx(184,22): error TS7006: Parameter 'place' implicitly has an 'any' type.
+src/screens/VenueScreen.tsx(184,29): error TS7006: Parameter 'nextSaved' implicitly has an 'any' type.
+src/screens/VenueScreen.tsx(222,9): error TS2322: Type '{ overview: { hero: { venueName: string; country: string; region: string; distanceLabel: string; windSummary: string; travelTip: string; onSave: () => void; isSaved: boolean; latitude: number; longitude: number; }; stats: VenueIntelStat[]; checklist: VenueIntelChecklistSection[]; chips: { ...; }; children: Element; ...' is not assignable to type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+  Property 'overview' does not exist on type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+src/services/AutoCourseGeneratorService.ts(1,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/BathymetryTileService.ts(8,35): error TS2307: Cannot find module '@/lib/types/global-venues' or its corresponding type declarations.
+src/services/ClubMemberService.ts(15,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/CoachStrategyService.ts(2,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/crewManagementService.ts(8,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/EmailService.ts(8,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/ExecutionEvaluationService.ts(2,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/fleetService.ts(2,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/MutationQueueService.ts(3,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/OfflineTileCacheService.ts(17,35): error TS2307: Cannot find module '@/lib/types/global-venues' or its corresponding type declarations.
+src/services/RaceAnalysisService.ts(9,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/RaceParticipantService.ts(8,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/RaceReminderService.ts(11,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/RaceSuggestionService.ts(8,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/RaceTimerService.ts(9,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/RaceWeatherService.ts(16,8): error TS2307: Cannot find module '@/lib/types/global-venues' or its corresponding type declarations.
+src/services/RaceWeatherService.ts(18,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/results/ExternalResultsService.ts(8,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/ResultsService.ts(9,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/SailingNetworkService.ts(8,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/storage/DocumentStorageService.ts(11,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/StrategicPlanningService.ts(2,30): error TS2307: Cannot find module '@/lib/utils/logger' or its corresponding type declarations.
+src/services/VenuePackageService.ts(16,35): error TS2307: Cannot find module '@/lib/types/global-venues' or its corresponding type declarations.
+npm error Lifecycle script `build` failed with error:
+npm error code 2
+npm error path /Users/kdenney/Developer/betterat-platform/domains/sailracing
+npm error workspace @betterat/domains-sailracing@1.0.0
+npm error location /Users/kdenney/Developer/betterat-platform/domains/sailracing
+npm error command failed
+npm error command sh -c tsc

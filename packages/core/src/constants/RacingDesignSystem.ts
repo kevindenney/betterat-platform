@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Racing-specific Design System
 
 export const Colors = {

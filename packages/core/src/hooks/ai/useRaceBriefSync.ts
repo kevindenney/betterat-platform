@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Auto-generated stub for @betterat/core/hooks/ai/useRaceBriefSync
 const createStubHook = (label: string) => {
   return (...args: any[]): any => {

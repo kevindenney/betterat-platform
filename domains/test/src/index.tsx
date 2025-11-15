@@ -9,51 +9,67 @@ import {
   DomainDashboardProps,
 } from '@betterat/domain-sdk';
 import { Button } from '@betterat/ui';
+import {
+  EventOverviewDashboard,
+  type QuickAction,
+  type HighlightEvent,
+  type UpcomingEvent,
+} from '@betterat/ui';
 
 // ============================================================================
 // Test Dashboard Component
 // ============================================================================
 
 const TestDashboard: React.FC<DomainDashboardProps> = ({ userId, services }) => {
-  const handleButtonPress = () => {
-    console.log('Button pressed!');
-    console.log('User ID:', userId);
-    services.analytics.trackEvent('test_button_pressed', { userId });
+  const actions: QuickAction[] = [
+    { id: 'seed-data', label: 'Seed data', icon: '🧪', onPress: () => services.analytics.trackEvent('seed_data', { userId }) },
+    { id: 'open-log', label: 'Open logger', icon: '📝', onPress: () => services.analytics.trackEvent('open_logger', { userId }) },
+  ];
+
+  const highlight: HighlightEvent = {
+    name: 'Sample readiness run',
+    dateRange: 'Now',
+    venue: 'Local sandbox',
+    info: 'Use this to validate layout propagation',
+    checklist: [
+      { label: 'Dashboard renders', state: 'complete' },
+      { label: 'Actions tracked', state: 'warning' },
+      { label: 'Routes registered', state: 'pending' },
+    ],
+    actions: [{ label: 'Trigger action', onPress: () => services.analytics.trackEvent('test_action', { userId }) }],
   };
 
+  const upcoming: UpcomingEvent[] = [
+    { id: '1', name: 'Domain smoke test', date: 'Daily at 09:00', venue: 'CI pipeline', badge: 'Automation' },
+  ];
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>✅ Test Domain Loaded!</Text>
-      <Text style={styles.subtitle}>Test Domain v1.0.0</Text>
-      <Text style={styles.description}>
-        Platform architecture validation successful
-      </Text>
-
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Test Button"
-          onPress={handleButtonPress}
-          variant="primary"
-        />
-      </View>
-
-      <View style={styles.infoContainer}>
+    <EventOverviewDashboard
+      hero={{
+        title: 'Test Domain Loaded!',
+        subtitle: 'Validates the shared EventOverview layout',
+        primaryCtaLabel: 'Run Test Action',
+        onPrimaryCta: () => services.analytics.trackEvent('test_button_pressed', { userId }),
+      }}
+      quickActions={actions}
+      highlightEvent={highlight}
+      upcomingEvents={upcoming}
+      emptyState={undefined}
+      fabLabel="+"
+      onFabPress={() => services.analytics.trackEvent('fab_pressed', { userId })}
+    >
+      <View style={styles.infoCard}>
+        <Text style={styles.subtitle}>SDK diagnostics</Text>
         <Text style={styles.infoText}>🧪 Domain ID: test</Text>
         <Text style={styles.infoText}>👤 User ID: {userId}</Text>
         <Text style={styles.infoText}>✨ SDK Version: 1.0.0</Text>
+        <Button title="Trigger analytics" onPress={() => services.analytics.trackEvent('test_button_pressed', { userId })} />
       </View>
-    </View>
+    </EventOverviewDashboard>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F9FAFB',
-    padding: 24,
-  },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
@@ -73,22 +89,13 @@ const styles = StyleSheet.create({
     marginBottom: 32,
     textAlign: 'center',
   },
-  buttonContainer: {
-    width: '100%',
-    maxWidth: 300,
-    marginBottom: 32,
-  },
-  infoContainer: {
+  infoCard: {
     backgroundColor: '#FFFFFF',
     padding: 16,
     borderRadius: 12,
-    width: '100%',
-    maxWidth: 300,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    gap: 8,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#E2E8F0',
   },
   infoText: {
     fontSize: 14,

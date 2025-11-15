@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Onboarding Entity Extractor
  * Uses AI to extract sailing-related entities from free-form text

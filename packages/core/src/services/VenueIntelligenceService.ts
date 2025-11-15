@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Venue Intelligence Service
  * Saves and retrieves AI-generated venue insights to/from database

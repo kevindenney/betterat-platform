@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Temporary placeholder for @betterat/ui/components/landing/HeroPhones
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';

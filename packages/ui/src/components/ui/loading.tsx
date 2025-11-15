@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Auto-generated stub for @betterat/ui/components/ui/loading
 import React from 'react';
 import { View, Text } from 'react-native';

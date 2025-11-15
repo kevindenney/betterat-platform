@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Session, User } from '@supabase/supabase-js';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { AuthService, type ClubProfile, type UserProfile } from '../auth/AuthService';

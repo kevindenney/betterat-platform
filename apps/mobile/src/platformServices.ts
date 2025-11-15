@@ -418,7 +418,7 @@ export const createPlatformServices = (
   },
   navigation: {
     navigate: (route, params) => {
-      navigationRef?.navigate(route as never, params as never);
+      navigationRef?.navigate(route, params);
     },
     goBack: () => {
       navigationRef?.goBack();
@@ -426,7 +426,7 @@ export const createPlatformServices = (
     reset: (route: string) => {
       navigationRef?.reset({
         index: 0,
-        routes: [{ name: route as never }],
+        routes: [{ name: route }],
       });
     },
   },

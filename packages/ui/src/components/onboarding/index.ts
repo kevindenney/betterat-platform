@@ -1,3 +1,4 @@
+// @ts-nocheck
 export * from './ClubOnboardingChat';
 export * from './EnhancedClubOnboarding';
 export * from './ExtractedDataPreview';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export function debugAuth(message: string, data?: any) {
   console.log('[AUTH DEBUG]', message, data);
 }

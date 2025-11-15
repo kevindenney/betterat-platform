@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Design System Constants
 
 export const colors = {

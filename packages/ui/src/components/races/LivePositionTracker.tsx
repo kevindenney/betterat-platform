@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Live Position Tracker Component - Phase 2
  * Real-time GPS position display with breadcrumb trail

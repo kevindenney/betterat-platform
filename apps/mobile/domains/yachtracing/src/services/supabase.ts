@@ -5,8 +5,8 @@
  * domain-specific utilities for yacht racing data access.
  */
 
-// Re-export the core Supabase client and types from RegattaFlow
-export {
+// Re-export the shared Supabase client and types from the core package
+import {
   supabase,
   queryWithRetry,
   testSupabaseConnectivity,
@@ -16,7 +16,10 @@ export {
   type TablesUpdate,
   type UserType,
   type UsersRow,
-} from '/Users/kdenney/Developer/RegattaFlow/regattaflow-app/services/supabase';
+} from '@betterat/core/database/client';
+
+export { supabase, queryWithRetry, testSupabaseConnectivity };
+export type { Database, Tables, TablesInsert, TablesUpdate, UserType, UsersRow };
 
 /**
  * Domain-specific Supabase utilities for yacht racing
@@ -33,7 +36,6 @@ export type RaceStatus = 'scheduled' | 'in_progress' | 'completed' | 'cancelled'
  * Check if we have an active Supabase session
  */
 export const hasActiveSession = async (): Promise<boolean> => {
-  const { supabase } = await import('/Users/kdenney/Developer/RegattaFlow/regattaflow-app/services/supabase');
   const { data: { session } } = await supabase.auth.getSession();
   return session !== null;
 };
@@ -42,7 +44,6 @@ export const hasActiveSession = async (): Promise<boolean> => {
  * Get the current user ID from the session
  */
 export const getCurrentUserId = async (): Promise<string | null> => {
-  const { supabase } = await import('/Users/kdenney/Developer/RegattaFlow/regattaflow-app/services/supabase');
   const { data: { session } } = await supabase.auth.getSession();
   return session?.user?.id ?? null;
 };

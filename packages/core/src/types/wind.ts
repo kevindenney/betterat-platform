@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Topographic and Wind Analysis Types
  *

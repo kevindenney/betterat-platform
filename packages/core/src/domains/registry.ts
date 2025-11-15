@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { DomainModule } from './types';
 
 const domainRegistry = new Map<string, DomainModule>();

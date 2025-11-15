@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "ES2020",
     "lib": [
-      "ES2020"
+      "ES2020",
+      "DOM"
     ],
     "module": "esnext",
     "moduleResolution": "bundler",
@@ -14,12 +15,11 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "declarationMap": true,
-    "incremental": true,
-    "composite": true,
     "baseUrl": ".",
     "paths": {
+      "@/*": [
+        "./apps/yacht-racing/*"
+      ],
       "@betterat/core": [
         "./packages/core/src"
       ],
@@ -49,7 +49,17 @@
   "exclude": [
     "node_modules",
     "dist",
-    "build"
+    "build",
+    "**/dist",
+    "**/dist/**",
+    "**/build",
+    "**/build/**",
+    ".expo",
+    "**/.expo",
+    "**/.expo/**",
+    ".turbo",
+    "**/.turbo",
+    "**/.turbo/**"
   ],
   "extends": "expo/tsconfig.base"
 }

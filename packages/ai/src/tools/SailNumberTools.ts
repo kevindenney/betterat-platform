@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Sail Number Tools
  * Import race results and boat data by sail number

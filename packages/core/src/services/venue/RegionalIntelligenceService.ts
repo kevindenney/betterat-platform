@@ -55,7 +55,7 @@ export interface LocalWeatherPattern {
 export interface TacticalIntelligence {
   courseKnowledge: CourseKnowledge[];
   localTactics: LocalTactic[];
-  equipmentRecommendations: EquipmentRecommendation[];
+  equipmentRecommendations: RegionalEquipmentRecommendation[];
   performanceFactors: PerformanceFactor[];
 }
 
@@ -74,7 +74,7 @@ export interface LocalTactic {
   source: 'expert' | 'data_analysis' | 'community';
 }
 
-export interface EquipmentRecommendation {
+export interface RegionalEquipmentRecommendation {
   category: 'sails' | 'rigging' | 'electronics' | 'safety' | 'crew_gear';
   item: string;
   reasoning: string;
@@ -132,7 +132,7 @@ export interface LogisticalIntelligence {
   accommodation: AccommodationIntel;
   services: ServiceIntel[];
   sailingServices?: SailingServices;
-  costEstimates: CostEstimate[];
+  costEstimates: RegionalCostEstimate[];
   timeline: LogisticalTimeline[];
 }
 
@@ -191,11 +191,11 @@ export interface ServiceIntel {
     | 'yacht_clubs'
     | 'sailmakers'
     | 'foul_weather_gear';
-  providers: ServiceProvider[];
+  providers: RegionalServiceProvider[];
   recommendations: string[];
 }
 
-export interface ServiceProvider {
+export interface RegionalServiceProvider {
   name: string;
   specialties: string[];
   reputation: 'excellent' | 'good' | 'average' | 'unknown';
@@ -206,7 +206,7 @@ export interface ServiceProvider {
   website?: string;
 }
 
-export interface CostEstimate {
+export interface RegionalCostEstimate {
   category: string;
   item: string;
   estimatedCost: number;

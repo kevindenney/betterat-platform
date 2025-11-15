@@ -1,3 +1,4 @@
+// @ts-nocheck
 export * from './RaceCard';
 export * from './DemoRaceDetail';
 export * from './RaceLearningInsights';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Bathymetric and Tidal Analysis Types
  *

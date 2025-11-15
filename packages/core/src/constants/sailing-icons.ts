@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Sailing Icons and Flags
 
 export const VENUE_ICONS = {

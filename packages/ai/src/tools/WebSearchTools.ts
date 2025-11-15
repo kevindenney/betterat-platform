@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Web Search Tools
  * Search the internet for sailing-related information

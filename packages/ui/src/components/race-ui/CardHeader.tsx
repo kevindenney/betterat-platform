@@ -1,20 +1,11 @@
-// Auto-generated stub for @betterat/ui/components/race-ui/CardHeader
-import React from 'react';
-import { View, Text } from 'react-native';
+/**
+ * CardHeader Component (race-ui re-export)
+ *
+ * This file re-exports the shared CardHeader component for backward compatibility.
+ * Components should preferably import directly from '@betterat/ui' instead.
+ *
+ * @deprecated Import from '@betterat/ui' instead
+ */
 
-const createStubComponent = (label: string) => {
-  const Stub = (props: any) => {
-    console.warn('[Stub] @betterat/ui/components/race-ui/CardHeader -> ' + label, props);
-    return (
-      <View accessibilityLabel={label}>
-        <Text>{label} - Stub</Text>
-      </View>
-    );
-  };
-  return Stub;
-};
-
-export type CardHeader = any;
-export type CardHeaderProps = any;
-export const CardHeader: any = createStubComponent('CardHeader');
-
+export { CardHeader } from '../CardHeader';
+export type { CardHeaderProps } from '../CardHeader';

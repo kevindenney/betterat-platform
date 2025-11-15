@@ -1,24 +1,39 @@
-// Auto-generated stub for @betterat/ui/components/themed-text
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Platform, Text, type TextProps } from 'react-native';
+import { useThemeColor } from '../hooks/useThemeColor';
 
-const createStubComponent = (label: string) => {
-  const Stub = (props: any) => {
-    console.warn('[Stub] @betterat/ui/components/themed-text -> ' + label, props);
-    return (
-      <View accessibilityLabel={label}>
-        <Text>{label} - Stub</Text>
-      </View>
-    );
-  };
-  return Stub;
+export type ThemedTextProps = TextProps & {
+  lightColor?: string;
+  darkColor?: string;
+  type?: 'default' | 'title' | 'subtitle' | 'caption' | 'mono';
 };
 
-export type ThemedText = any;
-export type ThemedTextProps = any;
-export const ThemedText: any = createStubComponent('ThemedText');
+const textStyles = {
+  default: { fontSize: 16, fontWeight: '400' as const },
+  title: { fontSize: 24, fontWeight: '600' as const },
+  subtitle: { fontSize: 18, fontWeight: '500' as const },
+  caption: { fontSize: 12, fontWeight: '400' as const },
+  mono: { fontSize: 13, fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }) },
+};
 
-export type themed_text = any;
-export type themed_textProps = any;
-export const themed_text: any = createStubComponent('themed_text');
+export function ThemedText({
+  style,
+  lightColor,
+  darkColor,
+  type = 'default',
+  ...otherProps
+}: ThemedTextProps) {
+  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  const variantStyle = textStyles[type] ?? textStyles.default;
 
+  return (
+    <Text
+      style={[
+        { color },
+        variantStyle,
+        style,
+      ]}
+      {...otherProps}
+    />
+  );
+}

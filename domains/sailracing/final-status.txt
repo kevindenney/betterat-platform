@@ -1,0 +1,57 @@
+
+> @betterat/domains-sailracing@1.0.0 build
+> tsc
+
+src/app-screens/(tabs)/venue.tsx(30,8): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/app-screens/(tabs)/venue.tsx(753,7): error TS2322: Type '{ searchQuery: string; onSearchQueryChange: Dispatch<SetStateAction<string>>; searchResults: NetworkPlace[]; savedPlaces: NetworkPlace[]; ... 5 more ...; onSaveToggle: (place: any, nextSaved: any) => void; }' is not assignable to type 'IntrinsicAttributes & NetworkSidebarProps'.
+  Property 'searchQuery' does not exist on type 'IntrinsicAttributes & NetworkSidebarProps'.
+src/app-screens/(tabs)/venue.tsx(773,22): error TS7006: Parameter 'place' implicitly has an 'any' type.
+src/app-screens/(tabs)/venue.tsx(773,29): error TS7006: Parameter 'nextSaved' implicitly has an 'any' type.
+src/app-screens/(tabs)/venue.tsx(845,9): error TS2322: Type '{ overview: { hero: { venueName: any; country: any; region: any; distanceLabel: string | undefined; windSummary: any; travelTip: any; onSave: () => void; isSaved: boolean; latitude: any; longitude: any; } | { ...; }; stats: VenueIntelStat[]; checklist: VenueIntelChecklistSection[]; chips: { ...; }; children: Element...' is not assignable to type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+  Property 'overview' does not exist on type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+src/app-screens/club-dashboard.tsx(11,22): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/app-screens/club-dashboard.tsx(45,8): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/app-screens/club-dashboard.tsx(85,27): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(203,79): error TS7006: Parameter 'regatta' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(234,33): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(323,50): error TS7006: Parameter 'bucket' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(353,38): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(383,39): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(439,36): error TS7006: Parameter 'document' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(471,33): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(586,18): error TS7006: Parameter 'a' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(586,21): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(598,31): error TS7006: Parameter 'member' implicitly has an 'any' type.
+src/app-screens/club-dashboard.tsx(664,70): error TS7006: Parameter 'regatta' implicitly has an 'any' type.
+src/app-screens/venue-verification.tsx(45,23): error TS2749: 'TravelResourceChips' refers to a value, but is being used as a type here. Did you mean 'typeof TravelResourceChips'?
+src/app-screens/venue-verification.tsx(542,7): error TS2322: Type '{ overview: { hero: { venueName: string; country: string; region: string; travelTip: string; windSummary: string; onSave: () => void; isSaved: boolean; latitude: number; longitude: number; }; stats: { id: string; label: string; value: string; detail: string; icon: string; }[]; checklist: { ...; }[]; chips: { ...; };...' is not assignable to type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+  Property 'overview' does not exist on type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+src/app-screens/venue-verification.tsx(546,25): error TS7006: Parameter 'venue' implicitly has an 'any' type.
+src/components/map/Bathymetry3DViewer.tsx(4,47): error TS2307: Cannot find module '@/types/map' or its corresponding type declarations.
+src/index.tsx(10,24): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/screens/EventsScreen.tsx(13,8): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/screens/EventsScreen.tsx(92,36): error TS2554: Expected 0 arguments, but got 1.
+src/screens/RacesScreen.tsx(17,29): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/screens/RacesScreen.tsx(18,27): error TS2307: Cannot find module '@betterat/ui/components/shared/TimelineStrip' or its corresponding type declarations.
+src/screens/RacesScreen.tsx(478,73): error TS7006: Parameter 'value' implicitly has an 'any' type.
+src/screens/VenueScreen.tsx(5,70): error TS2307: Cannot find module '@betterat/ui' or its corresponding type declarations.
+src/screens/VenueScreen.tsx(55,3): error TS2741: Property 'isSaved' is missing in type '{ id: string; name: string; country: string; location: { name: string; region: string; }; coordinates: { lat: number; lng: number; }; type: "repair"; notes: string; }' but required in type 'NetworkPlace'.
+src/screens/VenueScreen.tsx(162,7): error TS2322: Type '{ searchQuery: string; onSearchQueryChange: Dispatch<SetStateAction<string>>; searchResults: { isSaved: boolean; id: string; type: ServiceType; ... 6 more ...; isHomeVenue?: boolean | undefined; }[]; ... 6 more ...; onSaveToggle: (place: any, nextSaved: any) => void; }' is not assignable to type 'IntrinsicAttributes & NetworkSidebarProps'.
+  Property 'searchQuery' does not exist on type 'IntrinsicAttributes & NetworkSidebarProps'.
+src/screens/VenueScreen.tsx(182,22): error TS7006: Parameter 'place' implicitly has an 'any' type.
+src/screens/VenueScreen.tsx(182,29): error TS7006: Parameter 'nextSaved' implicitly has an 'any' type.
+src/screens/VenueScreen.tsx(220,9): error TS2322: Type '{ overview: { hero: { venueName: string; country: string; region: string; distanceLabel: string; windSummary: string; travelTip: string; onSave: () => void; isSaved: boolean; latitude: number; longitude: number; }; stats: VenueIntelStat[]; checklist: VenueIntelChecklistSection[]; chips: { ...; }; children: Element; ...' is not assignable to type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+  Property 'overview' does not exist on type 'IntrinsicAttributes & VenueIntelligenceDisplayProps'.
+src/services/RaceWeatherService.ts(11,3): error TS2305: Module '"@/types/venues"' has no exported member 'SailingVenue'.
+src/services/RaceWeatherService.ts(12,3): error TS2305: Module '"@/types/venues"' has no exported member 'VenueConditionProfile'.
+src/services/RaceWeatherService.ts(13,3): error TS2305: Module '"@/types/venues"' has no exported member 'VenueCulturalProfile'.
+src/services/RaceWeatherService.ts(14,3): error TS2305: Module '"@/types/venues"' has no exported member 'WeatherSourceConfig'.
+src/services/RaceWeatherService.ts(15,3): error TS2305: Module '"@/types/venues"' has no exported member 'YachtClub'.
+src/services/VenuePackageService.ts(314,11): error TS2488: Type '{ latitude: number; longitude: number; radius: number; }' must have a '[Symbol.iterator]()' method that returns an iterator.
+npm error Lifecycle script `build` failed with error:
+npm error code 2
+npm error path /Users/kdenney/Developer/betterat-platform/domains/sailracing
+npm error workspace @betterat/domains-sailracing@1.0.0
+npm error location /Users/kdenney/Developer/betterat-platform/domains/sailracing
+npm error command failed
+npm error command sh -c tsc

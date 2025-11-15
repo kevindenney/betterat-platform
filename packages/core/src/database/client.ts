@@ -71,6 +71,10 @@ export type UsersRow = { id: string; email: string | null; user_type: UserType; 
 const fallbackSupabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL ?? 'https://stub.supabase.co';
 const fallbackSupabaseKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? 'stub-anon-key';
 
+if (process.env.NODE_ENV !== 'production') {
+  console.log('[CoreSupabase] URL:', fallbackSupabaseUrl);
+}
+
 export const supabase = createClient(
   fallbackSupabaseUrl,
   fallbackSupabaseKey,
@@ -103,34 +107,46 @@ export interface Database {
           id: string
           email: string
           full_name: string
+          avatar_url: string | null
+          bio: string | null
           subscription_status: string
           subscription_tier: string
           stripe_customer_id: string
           user_type: 'sailor' | 'coach' | 'club' | null
           onboarding_completed?: boolean
           created_at: string
+          updated_at: string | null
+          preferences: Record<string, unknown> | null
         }
         Insert: {
           id: string
           email: string
           full_name: string
+          avatar_url?: string | null
+          bio?: string | null
           subscription_status?: string
           subscription_tier?: string
           stripe_customer_id?: string
           user_type?: 'sailor' | 'coach' | 'club' | null
           onboarding_completed?: boolean
           created_at?: string
+          updated_at?: string | null
+          preferences?: Record<string, unknown> | null
         }
         Update: {
           id?: string
           email?: string
           full_name?: string
+          avatar_url?: string | null
+          bio?: string | null
           subscription_status?: string
           subscription_tier?: string
           stripe_customer_id?: string
           user_type?: 'sailor' | 'coach' | 'club' | null
           onboarding_completed?: boolean
           created_at?: string
+          updated_at?: string | null
+          preferences?: Record<string, unknown> | null
         }
       }
       club_profiles: {

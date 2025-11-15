@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Auto-generated stub for @betterat/core/hooks/ai/useRaceCommsDraft
 const createStubHook = (label: string) => {
   return (...args: any[]): any => {

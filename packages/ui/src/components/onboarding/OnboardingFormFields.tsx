@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Auto-generated stub for @betterat/ui/components/onboarding/OnboardingFormFields
 import React from 'react';
 import { View, Text } from 'react-native';

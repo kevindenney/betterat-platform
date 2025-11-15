@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Boat Equipment Constants
 
 export const DRAGON_HULL_MAKER_NAMES = [

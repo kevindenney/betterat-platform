@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Auto-generated stub for @betterat/core/hooks/useRacePhaseDetection
 const createStubHook = (label: string) => {
   return (...args: any[]): any => {

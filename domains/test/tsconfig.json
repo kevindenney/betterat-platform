@@ -10,6 +10,7 @@
     "noEmit": false,
     "skipLibCheck": true,
     "composite": false,
+    "typeRoots": ["../../node_modules/@types"],
     "paths": {
       "@betterat/core": ["../../packages/core/dist"],
       "@betterat/core/*": ["../../packages/core/dist/*"],

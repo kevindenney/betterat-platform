@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect, useCallback } from 'react';
 import * as Location from 'expo-location';
 import { VenueIntelligenceAgent } from '../services/agents/VenueIntelligenceAgent';

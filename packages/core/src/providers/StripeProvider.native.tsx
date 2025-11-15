@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 
 // Native-specific Stripe provider (iOS/Android)

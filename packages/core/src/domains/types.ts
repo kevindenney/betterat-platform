@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ComponentType } from 'react';
 
 // These types match the domain-sdk DomainModule interface

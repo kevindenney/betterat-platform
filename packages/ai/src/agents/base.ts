@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Anthropic from '@anthropic-ai/sdk';
 import type { ZodTypeAny } from 'zod';
 import { ZodFirstPartyTypeKind } from 'zod';

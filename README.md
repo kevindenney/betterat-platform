@@ -65,6 +65,16 @@ npm start
 # Press 'w' for web
 ```
 
+### Yacht Racing Environment Variables
+Set the API keys that power the yacht-racing Expo app. Create (or update) `apps/yacht-racing/.env` with the following entries:
+
+```
+EXPO_PUBLIC_ANTHROPIC_API_KEY=sk-ant-...
+EXPO_PUBLIC_STORMGLASS_API_KEY=your-storm-glass-key
+```
+
+The Expo config at `apps/yacht-racing/app.config.ts` loads these values via `dotenv` and exposes them through `Constants.expoConfig.extra`. Restart Metro (`cd apps/yacht-racing && npx expo start`) after editing the file so the keys are available at runtime.
+
 ## 📦 Packages
 
 ### @betterat/core

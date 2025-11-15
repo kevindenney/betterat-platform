@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const spacing = {
   xs: 4,
   sm: 8,

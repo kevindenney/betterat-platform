@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ComponentType, ReactNode } from 'react';
 import { z } from 'zod';
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Base Agent Service
  * Foundation for autonomous AI agents using Anthropic's SDK

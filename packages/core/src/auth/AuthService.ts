@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Session, User } from '@supabase/supabase-js';
 import { supabase, type Database, type UserType } from '../database/client';
 

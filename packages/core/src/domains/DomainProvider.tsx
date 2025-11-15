@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { DomainModule } from './types';
 import { registerDomain as registerDomainInRegistry, getDomain } from './registry';

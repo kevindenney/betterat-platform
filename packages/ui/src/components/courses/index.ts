@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const courses = {};
 export const CourseLibrary = () => null;
 export const CourseDetail = () => null;

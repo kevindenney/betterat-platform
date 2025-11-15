@@ -1,24 +1,31 @@
-// Auto-generated stub for @betterat/ui/components/themed-view
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, type ViewProps } from 'react-native';
+import { useThemeColor } from '../hooks/useThemeColor';
 
-const createStubComponent = (label: string) => {
-  const Stub = (props: any) => {
-    console.warn('[Stub] @betterat/ui/components/themed-view -> ' + label, props);
-    return (
-      <View accessibilityLabel={label}>
-        <Text>{label} - Stub</Text>
-      </View>
-    );
-  };
-  return Stub;
+export type ThemedViewProps = ViewProps & {
+  lightColor?: string;
+  darkColor?: string;
+  border?: boolean;
 };
 
-export type ThemedView = any;
-export type ThemedViewProps = any;
-export const ThemedView: any = createStubComponent('ThemedView');
+export function ThemedView({
+  style,
+  lightColor,
+  darkColor,
+  border = false,
+  ...otherProps
+}: ThemedViewProps) {
+  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+  const borderColor = useThemeColor({}, 'border');
 
-export type themed_view = any;
-export type themed_viewProps = any;
-export const themed_view: any = createStubComponent('themed_view');
-
+  return (
+    <View
+      style={[
+        { backgroundColor },
+        border && { borderWidth: 1, borderColor },
+        style,
+      ]}
+      {...otherProps}
+    />
+  );
+}

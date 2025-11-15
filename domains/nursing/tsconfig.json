@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "lib": ["ES2020"],
+    "jsx": "react-native",
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": false,
+    "skipLibCheck": true,
+    "composite": false,
+    "typeRoots": ["../../node_modules/@types"],
+    "baseUrl": ".",
+    "paths": {
+      "@betterat/core": ["../../packages/core/dist"],
+      "@betterat/core/*": ["../../packages/core/dist/*"],
+      "@betterat/ui": ["../../packages/ui/dist"],
+      "@betterat/ui/*": ["../../packages/ui/dist/*"],
+      "@betterat/domain-sdk": ["../../packages/domain-sdk/dist"],
+      "@betterat/domain-sdk/*": ["../../packages/domain-sdk/dist/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

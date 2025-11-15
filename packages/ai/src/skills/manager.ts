@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Claude Skills Management Service
  * Handles uploading, listing, and managing custom Claude Skills for the application

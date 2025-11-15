@@ -1,0 +1,1153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventOverviewSurface dark mode matches snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#E2E8F0",
+        "borderRadius": 20,
+        "borderWidth": 0.5,
+        "marginBottom": 20,
+        "padding": 24,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#0F172A",
+          "fontSize": 24,
+          "fontWeight": "700",
+        }
+      }
+    >
+      Marina Bay Invitational
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#64748B",
+          "fontSize": 15,
+          "marginTop": 6,
+        }
+      }
+    >
+      Skipper briefing starts in 2 hours
+    </Text>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignSelf": "flex-start",
+          "backgroundColor": "#4338CA",
+          "borderRadius": 999,
+          "marginTop": 16,
+          "opacity": 1,
+          "paddingHorizontal": 20,
+          "paddingVertical": 12,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#FFFFFF",
+            "fontWeight": "600",
+          }
+        }
+      >
+        Open Event Workspace
+      </Text>
+    </View>
+  </View>
+  <RCTScrollView
+    contentContainerStyle={
+      {
+        "flexDirection": "row",
+        "gap": 12,
+        "marginBottom": 20,
+      }
+    }
+    horizontal={true}
+    showsHorizontalScrollIndicator={false}
+  >
+    <View>
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#E2E8F0",
+            "borderRadius": 16,
+            "borderWidth": 0.5,
+            "opacity": 1,
+            "paddingHorizontal": 16,
+            "paddingVertical": 14,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "fontSize": 20,
+              "marginBottom": 6,
+            }
+          }
+        >
+          📝
+        </Text>
+        <Text
+          style={
+            {
+              "color": "#0F172A",
+              "fontSize": 13,
+              "fontWeight": "600",
+            }
+          }
+        >
+          Race Notes
+        </Text>
+      </View>
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#E2E8F0",
+            "borderRadius": 16,
+            "borderWidth": 0.5,
+            "opacity": 1,
+            "paddingHorizontal": 16,
+            "paddingVertical": 14,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "fontSize": 20,
+              "marginBottom": 6,
+            }
+          }
+        >
+          📄
+        </Text>
+        <Text
+          style={
+            {
+              "color": "#0F172A",
+              "fontSize": 13,
+              "fontWeight": "600",
+            }
+          }
+        >
+          Permits
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+  <View
+    style={
+      {
+        "marginBottom": 24,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#0F172A",
+          "fontSize": 18,
+          "fontWeight": "700",
+          "marginBottom": 12,
+        }
+      }
+    >
+      Next Event
+    </Text>
+    <View
+      style={
+        {
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#E2E8F0",
+          "borderRadius": 20,
+          "borderWidth": 0.5,
+          "padding": 20,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#0F172A",
+            "fontSize": 20,
+            "fontWeight": "700",
+          }
+        }
+      >
+        Practice Regatta
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#64748B",
+            "fontSize": 16,
+            "marginVertical": 4,
+          }
+        }
+      >
+        Mar 12 - Mar 13
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#64748B",
+            "fontSize": 15,
+            "marginBottom": 8,
+          }
+        }
+      >
+        📍 
+        Newport Harbor
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#0F172A",
+            "fontSize": 14,
+            "marginBottom": 16,
+          }
+        }
+      >
+        Winds steady at 15kts • Tide swing 2.1m
+      </Text>
+      <View
+        style={
+          {
+            "backgroundColor": "#F1F5F9",
+            "borderRadius": 16,
+            "marginBottom": 16,
+            "padding": 12,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#64748B",
+              "fontSize": 13,
+              "fontWeight": "700",
+              "marginBottom": 8,
+              "textTransform": "uppercase",
+            }
+          }
+        >
+          Status checklist:
+        </Text>
+        <View
+          style={
+            {
+              "marginBottom": 4,
+            }
+          }
+        >
+          <Text>
+            ✅
+             
+            Sail inventory uploaded
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "marginBottom": 4,
+            }
+          }
+        >
+          <Text>
+            ⚪
+             
+            Waivers collected
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "marginBottom": 4,
+            }
+          }
+        >
+          <Text>
+            ⚠️
+             
+            Dock brief scheduled
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "flexDirection": "row",
+            "gap": 12,
+          }
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#312E81",
+              "borderRadius": 12,
+              "flex": 1,
+              "opacity": 1,
+              "paddingVertical": 12,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#FFFFFF",
+                "fontWeight": "600",
+              }
+            }
+          >
+            Launch Dock Chat
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E1B4B",
+              "borderRadius": 12,
+              "flex": 1,
+              "opacity": 1,
+              "paddingVertical": 12,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#FFFFFF",
+                "fontWeight": "600",
+              }
+            }
+          >
+            Share Fleet Brief
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "marginBottom": 24,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#0F172A",
+          "fontSize": 18,
+          "fontWeight": "700",
+          "marginBottom": 12,
+        }
+      }
+    >
+      Upcoming Events
+    </Text>
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#E2E8F0",
+          "borderRadius": 16,
+          "borderWidth": 0.5,
+          "flexDirection": "row",
+          "gap": 12,
+          "marginBottom": 12,
+          "padding": 16,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#0F172A",
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          Rolex Big Boat
+        </Text>
+        <Text
+          style={
+            {
+              "color": "#64748B",
+              "fontSize": 14,
+            }
+          }
+        >
+          Apr 4
+        </Text>
+        <Text
+          style={
+            {
+              "color": "#64748B",
+              "fontSize": 14,
+            }
+          }
+        >
+          📍 
+          StFYC
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "gap": 20,
+        "marginTop": 24,
+      }
+    }
+  >
+    <View>
+      <Text>
+        Custom Child Content
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`EventOverviewSurface light mode matches snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#E2E8F0",
+        "borderRadius": 20,
+        "borderWidth": 0.5,
+        "marginBottom": 20,
+        "padding": 24,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#0F172A",
+          "fontSize": 24,
+          "fontWeight": "700",
+        }
+      }
+    >
+      Marina Bay Invitational
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#64748B",
+          "fontSize": 15,
+          "marginTop": 6,
+        }
+      }
+    >
+      Skipper briefing starts in 2 hours
+    </Text>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignSelf": "flex-start",
+          "backgroundColor": "#4338CA",
+          "borderRadius": 999,
+          "marginTop": 16,
+          "opacity": 1,
+          "paddingHorizontal": 20,
+          "paddingVertical": 12,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#FFFFFF",
+            "fontWeight": "600",
+          }
+        }
+      >
+        Open Event Workspace
+      </Text>
+    </View>
+  </View>
+  <RCTScrollView
+    contentContainerStyle={
+      {
+        "flexDirection": "row",
+        "gap": 12,
+        "marginBottom": 20,
+      }
+    }
+    horizontal={true}
+    showsHorizontalScrollIndicator={false}
+  >
+    <View>
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#E2E8F0",
+            "borderRadius": 16,
+            "borderWidth": 0.5,
+            "opacity": 1,
+            "paddingHorizontal": 16,
+            "paddingVertical": 14,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "fontSize": 20,
+              "marginBottom": 6,
+            }
+          }
+        >
+          📝
+        </Text>
+        <Text
+          style={
+            {
+              "color": "#0F172A",
+              "fontSize": 13,
+              "fontWeight": "600",
+            }
+          }
+        >
+          Race Notes
+        </Text>
+      </View>
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#E2E8F0",
+            "borderRadius": 16,
+            "borderWidth": 0.5,
+            "opacity": 1,
+            "paddingHorizontal": 16,
+            "paddingVertical": 14,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "fontSize": 20,
+              "marginBottom": 6,
+            }
+          }
+        >
+          📄
+        </Text>
+        <Text
+          style={
+            {
+              "color": "#0F172A",
+              "fontSize": 13,
+              "fontWeight": "600",
+            }
+          }
+        >
+          Permits
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+  <View
+    style={
+      {
+        "marginBottom": 24,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#0F172A",
+          "fontSize": 18,
+          "fontWeight": "700",
+          "marginBottom": 12,
+        }
+      }
+    >
+      Next Event
+    </Text>
+    <View
+      style={
+        {
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#E2E8F0",
+          "borderRadius": 20,
+          "borderWidth": 0.5,
+          "padding": 20,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#0F172A",
+            "fontSize": 20,
+            "fontWeight": "700",
+          }
+        }
+      >
+        Practice Regatta
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#64748B",
+            "fontSize": 16,
+            "marginVertical": 4,
+          }
+        }
+      >
+        Mar 12 - Mar 13
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#64748B",
+            "fontSize": 15,
+            "marginBottom": 8,
+          }
+        }
+      >
+        📍 
+        Newport Harbor
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#0F172A",
+            "fontSize": 14,
+            "marginBottom": 16,
+          }
+        }
+      >
+        Winds steady at 15kts • Tide swing 2.1m
+      </Text>
+      <View
+        style={
+          {
+            "backgroundColor": "#F1F5F9",
+            "borderRadius": 16,
+            "marginBottom": 16,
+            "padding": 12,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#64748B",
+              "fontSize": 13,
+              "fontWeight": "700",
+              "marginBottom": 8,
+              "textTransform": "uppercase",
+            }
+          }
+        >
+          Status checklist:
+        </Text>
+        <View
+          style={
+            {
+              "marginBottom": 4,
+            }
+          }
+        >
+          <Text>
+            ✅
+             
+            Sail inventory uploaded
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "marginBottom": 4,
+            }
+          }
+        >
+          <Text>
+            ⚪
+             
+            Waivers collected
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "marginBottom": 4,
+            }
+          }
+        >
+          <Text>
+            ⚠️
+             
+            Dock brief scheduled
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "flexDirection": "row",
+            "gap": 12,
+          }
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#312E81",
+              "borderRadius": 12,
+              "flex": 1,
+              "opacity": 1,
+              "paddingVertical": 12,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#FFFFFF",
+                "fontWeight": "600",
+              }
+            }
+          >
+            Launch Dock Chat
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E1B4B",
+              "borderRadius": 12,
+              "flex": 1,
+              "opacity": 1,
+              "paddingVertical": 12,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#FFFFFF",
+                "fontWeight": "600",
+              }
+            }
+          >
+            Share Fleet Brief
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "marginBottom": 24,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#0F172A",
+          "fontSize": 18,
+          "fontWeight": "700",
+          "marginBottom": 12,
+        }
+      }
+    >
+      Upcoming Events
+    </Text>
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#E2E8F0",
+          "borderRadius": 16,
+          "borderWidth": 0.5,
+          "flexDirection": "row",
+          "gap": 12,
+          "marginBottom": 12,
+          "padding": 16,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#0F172A",
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          Rolex Big Boat
+        </Text>
+        <Text
+          style={
+            {
+              "color": "#64748B",
+              "fontSize": 14,
+            }
+          }
+        >
+          Apr 4
+        </Text>
+        <Text
+          style={
+            {
+              "color": "#64748B",
+              "fontSize": 14,
+            }
+          }
+        >
+          📍 
+          StFYC
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "gap": 20,
+        "marginTop": 24,
+      }
+    }
+  >
+    <View>
+      <Text>
+        Custom Child Content
+      </Text>
+    </View>
+  </View>
+</View>
+`;

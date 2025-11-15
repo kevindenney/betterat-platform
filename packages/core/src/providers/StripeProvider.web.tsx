@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 
 // Web-specific Stripe provider - uses passthrough

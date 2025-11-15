@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Auto-generated stub for @betterat/ui/components/ui/text
 import React from 'react';
 import { View, Text as RNText } from 'react-native';

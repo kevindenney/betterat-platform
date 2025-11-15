@@ -1,4 +1,4 @@
-import React, { useMemo, useState, type ComponentType } from 'react';
+import React, { useEffect, useMemo, useState, type ComponentType } from 'react';
 import {
   ActivityIndicator,
   Modal,
@@ -26,12 +26,13 @@ import {
 import { GluestackUIProvider } from '@betterat/ui/components/ui/gluestack-ui-provider';
 import type { DomainDashboardProps } from '@betterat/domain-sdk';
 import testDomain from '@betterat/domains-test';
-import yachtRacingDomain from '@betterat/domains-yachtracing';
-import { RacesScreen } from '../../domains/yachtracing/src/screens/RacesScreen';
-import { CoursesScreen } from '../../domains/yachtracing/src/screens/CoursesScreen';
-import { BoatScreen } from '../../domains/yachtracing/src/screens/BoatScreen';
-import { VenueScreen } from '../../domains/yachtracing/src/screens/VenueScreen';
-import { MoreScreen } from '../../domains/yachtracing/src/screens/MoreScreen';
+import sailRacingDomain from '@betterat/domains-sailracing';
+import nursingDomain from '@betterat/domains-nursing';
+import { RacesScreen } from '../../domains/sailracing/src/screens/RacesScreen';
+import { CoursesScreen } from '../../domains/sailracing/src/screens/CoursesScreen';
+import { BoatScreen } from '../../domains/sailracing/src/screens/BoatScreen';
+import { VenueScreen } from '../../domains/sailracing/src/screens/VenueScreen';
+import { MoreScreen } from '../../domains/sailracing/src/screens/MoreScreen';
 import { createPlatformServices } from './src/platformServices';
 
 const Tab = createBottomTabNavigator();
@@ -45,9 +46,13 @@ const queryClient = new QueryClient({
   },
 });
 
-const INITIAL_DOMAINS = [testDomain, yachtRacingDomain];
-const INITIAL_ACTIVE_DOMAIN_IDS = [yachtRacingDomain.meta.id, testDomain.meta.id];
-const DEFAULT_DOMAIN_ID = yachtRacingDomain.meta.id;
+const INITIAL_DOMAINS = [sailRacingDomain, nursingDomain, testDomain];
+const INITIAL_ACTIVE_DOMAIN_IDS = [
+  sailRacingDomain.meta.id,
+  nursingDomain.meta.id,
+  testDomain.meta.id,
+];
+const DEFAULT_DOMAIN_ID = sailRacingDomain.meta.id;
 
 const RacesScreenWrapper = makeDomainScreen(RacesScreen);
 const CoursesScreenWrapper = makeDomainScreen(CoursesScreen);
@@ -109,18 +114,67 @@ function PlatformBoundary() {
 
 function DomainContent() {
   const { currentDomain } = useDomain();
+  const [selectedRoute, setSelectedRoute] = useState<string | null>(null);
+
+  const domainId = currentDomain?.meta.id ?? null;
+  const domainRoutes = currentDomain?.routes ?? [];
+  const defaultRoutePath = domainRoutes[0]?.path ?? null;
+
+  useEffect(() => {
+    if (!domainId || domainId === DEFAULT_DOMAIN_ID) {
+      setSelectedRoute(null);
+      return;
+    }
+    setSelectedRoute(defaultRoutePath);
+  }, [domainId, defaultRoutePath]);
 
   if (!currentDomain) {
     return <LoadingState message="Select a domain to begin" />;
   }
 
-  if (currentDomain.meta.id === DEFAULT_DOMAIN_ID) {
+  if (domainId === DEFAULT_DOMAIN_ID) {
     return <YachtRacingTabs />;
   }
 
-  const Dashboard = currentDomain.components?.Dashboard;
-  if (Dashboard) {
-    return <DomainComponentRenderer component={Dashboard} />;
+  const ActiveComponent =
+    domainRoutes.find((route) => route.path === selectedRoute)?.component ??
+    currentDomain.components?.Dashboard;
+
+  if (ActiveComponent) {
+    return (
+      <View style={styles.domainContent}>
+        {domainRoutes.length > 0 ? (
+          <View style={styles.domainTabs}>
+            {domainRoutes.map((route) => {
+              const isActive = route.path === selectedRoute;
+              return (
+                <TouchableOpacity
+                  key={route.path}
+                  style={[styles.domainTab, isActive && styles.domainTabActive]}
+                  onPress={() => setSelectedRoute(route.path)}
+                >
+                  {route.tabIcon ? (
+                    <Text style={styles.domainTabIcon}>{route.tabIcon}</Text>
+                  ) : null}
+                  <Text
+                    style={[
+                      styles.domainTabLabel,
+                      isActive && styles.domainTabLabelActive,
+                    ]}
+                  >
+                    {route.tabLabel ?? route.name}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        ) : null}
+        <DomainComponentRenderer
+          key={`${domainId}-${selectedRoute ?? 'dashboard'}`}
+          component={ActiveComponent}
+        />
+      </View>
+    );
   }
 
   return (
@@ -362,6 +416,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.35)',
     justifyContent: 'flex-end',
   },
+  domainContent: {
+    flex: 1,
+  },
   modalSheet: {
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 24,
@@ -409,5 +466,37 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#2563EB',
     fontWeight: '700',
+  },
+  domainTabs: {
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    paddingTop: 12,
+    paddingBottom: 4,
+    gap: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E2E8F0',
+  },
+  domainTab: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 999,
+    backgroundColor: '#F1F5F9',
+  },
+  domainTabActive: {
+    backgroundColor: '#DBEAFE',
+  },
+  domainTabIcon: {
+    fontSize: 14,
+  },
+  domainTabLabel: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#475569',
+  },
+  domainTabLabelActive: {
+    color: '#1D4ED8',
   },
 });

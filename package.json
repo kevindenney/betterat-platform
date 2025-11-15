@@ -18,6 +18,8 @@
     "ios": "expo run:ios"
   },
   "devDependencies": {
+    "@types/react": "~19.1.10",
+    "@types/react-native": "^0.72.7",
     "metro": "^0.83.3",
     "prettier": "^3.4.2",
     "turbo": "^2.3.3",
@@ -25,28 +27,39 @@
     "undici": "^7.16.0"
   },
   "overrides": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-native": "0.81.5"
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "@types/react": "~19.1.10",
+    "expo-router": "~6.0.14"
   },
   "packageManager": "npm@10.9.2",
   "engines": {
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@googlemaps/markerclusterer": "^2.6.2",
+    "@googlemaps/react-wrapper": "^1.2.0",
+    "@react-native-picker/picker": "2.11.1",
+    "@react-three/fiber": "^9.4.0",
     "date-fns": "^4.1.0",
     "expo": "~54.0.23",
     "expo-linking": "^8.0.8",
-    "expo-router": "^6.0.14",
+    "expo-router": "~6.0.14",
     "lucide-react-native": "^0.553.0",
     "maplibre-gl": "^5.12.0",
     "nativewind": "^4.2.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-hook-form": "^7.66.0",
     "react-native": "0.81.5",
+    "react-native-maps": "^0.25.0",
+    "react-native-web": "^0.21.0",
+    "react-native-maps-super-cluster": "^1.6.0",
     "react-native-worklets": "^0.6.1",
     "react-native-worklets-core": "^1.6.2",
     "tailwindcss": "^3.4.18",
+    "three": "^0.181.1",
     "zustand": "^5.0.8"
   }
 }

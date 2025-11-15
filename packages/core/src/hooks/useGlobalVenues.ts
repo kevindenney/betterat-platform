@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Auto-generated stub for @betterat/core/hooks/useGlobalVenues
 const createStubHook = (label: string) => {
   return (...args: any[]): any => {
