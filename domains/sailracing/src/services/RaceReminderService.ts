@@ -8,7 +8,7 @@
 
 import { supabase } from './supabase';
 import { emailService } from './EmailService';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 type WeatherForecast = {
   wind_speed: number;

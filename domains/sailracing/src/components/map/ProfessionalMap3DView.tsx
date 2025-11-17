@@ -8,7 +8,7 @@ import { NOAABathymetryService } from '@/services/bathymetry/NOAABathymetryServi
 import { AISStreamService } from '@/services/ais/AISStreamService';
 import { WebMapView } from './WebMapView';
 import sailingLocations from '@/data/sailing-locations.json';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 import {
   AdvancedMapConfig,
   AdvancedWeatherConditions,

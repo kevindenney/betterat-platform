@@ -1,0 +1,1 @@
+{"version":3,"file":"useRealtimeConnection.d.ts","sourceRoot":"","sources":["useRealtimeConnection.ts"],"names":[],"mappings":"AAIA,MAAM,MAAM,uBAAuB,GAAG,WAAW,GAAG,cAAc,GAAG,cAAc,CAAC;AAEpF,MAAM,WAAW,kBAAkB;IACjC,MAAM,EAAE,uBAAuB,CAAC;IAChC,WAAW,EAAE,OAAO,CAAC;IACrB,cAAc,EAAE,OAAO,CAAC;IACxB,cAAc,EAAE,MAAM,OAAO,CAAC,IAAI,CAAC,CAAC;CACrC;AAED,wBAAgB,qBAAqB,IAAI,kBAAkB,CA6B1D"}

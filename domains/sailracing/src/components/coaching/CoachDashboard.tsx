@@ -13,7 +13,7 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useAuth } from '@/providers/AuthProvider';
 import { coachStrategyService, type SharedStrategy } from '@/services/CoachStrategyService';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 const logger = createLogger('CoachDashboard');
 

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 /**
  * Overpass API Service

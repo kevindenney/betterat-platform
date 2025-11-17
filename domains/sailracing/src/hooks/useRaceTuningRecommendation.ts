@@ -6,7 +6,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { raceTuningService, type RaceTuningRecommendation, type RaceTuningSetting } from '@/services/RaceTuningService';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 export interface UseRaceTuningOptions {
   classId?: string | null;

@@ -9,7 +9,7 @@ import { tuningGuideService, type TuningGuide } from '@betterat/core/services/bo
 import type { ExtractedSection } from './TuningGuideExtractionService';
 import { raceTuningEngine, type RaceTuningCandidate } from './ai/RaceTuningEngine';
 // @ts-nocheck
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 export interface RaceTuningRequest {
   classId?: string | null;

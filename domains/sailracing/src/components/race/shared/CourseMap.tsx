@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
 import { RaceCourse, Mark } from '../RaceBuilder';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../../utils/logger';
 
 // MapLibre GL JS for web, placeholder for native
 let maplibregl: any = null;

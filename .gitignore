@@ -13,6 +13,8 @@ dist/
 build/
 *.tgz
 lib/
+!domains/sailracing/src/lib/
+!domains/sailracing/src/lib/**
 out/
 
 # TypeScript

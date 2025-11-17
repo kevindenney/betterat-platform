@@ -24,7 +24,7 @@ import RaceCourseVisualization3D from '@/components/strategy/RaceCourseVisualiza
 import RaceDayInterface from '@/components/racing/RaceDayInterface';
 import { AIRaceAnalysisDashboard } from '@/components/ai/AIRaceAnalysisDashboard';
 import type { DocumentAnalysis, RaceCourseExtraction } from '@/lib/types/ai-knowledge';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 interface DashboardState {
   currentVenue: SailingVenue | null;

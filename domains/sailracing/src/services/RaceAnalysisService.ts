@@ -6,7 +6,7 @@
 
 import { RaceTimerService } from './RaceTimerService';
 import { supabase } from './supabase';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 export interface AnalysisResult {
   id: string;

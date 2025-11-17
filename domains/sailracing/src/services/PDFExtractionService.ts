@@ -10,7 +10,7 @@
 
 import { Platform } from 'react-native';
 import * as FileSystem from 'expo-file-system';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 // PDF.js will be loaded from CDN on web
 let pdfjsLib: any = null;

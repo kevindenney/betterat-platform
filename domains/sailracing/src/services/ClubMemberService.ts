@@ -12,7 +12,7 @@
 import { supabase } from './supabase';
 import * as FileSystem from 'expo-file-system';
 import { Share } from 'react-native';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 import { ClubRole } from '@/types/club';
 
 export interface ClubMember {

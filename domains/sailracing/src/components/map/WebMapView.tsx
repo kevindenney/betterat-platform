@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Platform } from 'react-native';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 interface WebMapViewProps {
   venue: string;

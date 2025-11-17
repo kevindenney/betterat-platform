@@ -9,7 +9,7 @@ let colorSchemeSpy: jest.SpyInstance<Scheme | null, []> | null = null;
  */
 export const mockColorScheme = (scheme: Scheme = 'light') => {
   if (!colorSchemeSpy) {
-    colorSchemeSpy = jest.spyOn(ReactNative, 'useColorScheme');
+    colorSchemeSpy = jest.spyOn(ReactNative, 'useColorScheme') as jest.SpyInstance<Scheme | null, []>;
   }
 
   colorSchemeSpy.mockReturnValue(scheme);

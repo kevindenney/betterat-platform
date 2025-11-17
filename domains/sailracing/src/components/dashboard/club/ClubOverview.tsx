@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { DashboardKPICard, DashboardSection, QuickAction, QuickActionGrid } from '../shared';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../../utils/logger';
 
 interface ClubStats {
   totalMembers: number;

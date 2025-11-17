@@ -5,7 +5,7 @@
 
 import { supabase } from './supabase';
 import MutationQueueService from './MutationQueueService';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 export type CrewRole = 'helmsman' | 'tactician' | 'trimmer' | 'bowman' | 'pit' | 'grinder' | 'other';
 export type CrewAccessLevel = 'view' | 'edit' | 'full';

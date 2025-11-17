@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import { Book, ExternalLink, Download, Star, Tag } from 'lucide-react-native';
 import { tuningGuideService, type TuningGuide as ServiceTuningGuide } from '@betterat/core';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 interface TuningGuide {
   id: string;

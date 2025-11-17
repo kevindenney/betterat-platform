@@ -1,12 +1,12 @@
 import React, { useMemo, useState, useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { DomainDashboardProps } from '@betterat/domain-sdk';
-import { MapControls, type MapLayers } from '@/components/venue/MapControls';
+import { MapControls, type MapLayers } from '../components/venue/MapControls';
 import { type VenueIntelStat, type VenueIntelChecklistSection } from '@betterat/ui';
-import { VenueIntelligenceDisplay } from '@/components/venue/VenueIntelligenceDisplay';
-import { VenueDetailsSheet } from '@/components/venue/VenueDetailsSheet';
-import { NetworkSidebar } from '@/components/venue/NetworkSidebar';
-import type { NetworkPlace } from '@/services/SailingNetworkService';
+import { VenueIntelligenceDisplay } from '../components/venue/VenueIntelligenceDisplay';
+import { VenueDetailsSheet } from '../components/venue/VenueDetailsSheet';
+import { NetworkSidebar } from '../components/venue/NetworkSidebar';
+import type { NetworkPlace } from '../services/SailingNetworkService';
 import theme from '../theme';
 
 const FEATURED_VENUE = {

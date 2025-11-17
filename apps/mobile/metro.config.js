@@ -49,6 +49,41 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     }
   }
 
+  // Map @betterat/domains-* packages directly to their source folders
+  const domainMatch = moduleName.match(/^@betterat\/domains-([^/]+)(\/.*)?$/);
+  if (domainMatch) {
+    const [, domainName, subPathRaw] = domainMatch;
+    const domainSrc = path.resolve(monorepoRoot, 'domains', domainName, 'src');
+    const subPath = subPathRaw ? subPathRaw.replace(/^\//, '') : '';
+    const basePath = subPath
+      ? path.resolve(domainSrc, subPath)
+      : path.resolve(domainSrc, 'index');
+
+    const fileExtensions = ['', '.tsx', '.ts', '.js', '.jsx'];
+    const indexExtensions = ['/index.tsx', '/index.ts', '/index.js'];
+
+    for (const ext of fileExtensions) {
+      const fullPath = basePath + ext;
+      if (fs.existsSync(fullPath) && fs.statSync(fullPath).isFile()) {
+        return {
+          type: 'sourceFile',
+          filePath: fullPath,
+        };
+      }
+    }
+
+    const directoryBase = subPath ? path.resolve(domainSrc, subPath) : domainSrc;
+    for (const ext of indexExtensions) {
+      const fullPath = directoryBase + ext;
+      if (fs.existsSync(fullPath) && fs.statSync(fullPath).isFile()) {
+        return {
+          type: 'sourceFile',
+          filePath: fullPath,
+        };
+      }
+    }
+  }
+
   // Fall back to default resolver
   if (originalResolveRequest) {
     return originalResolveRequest(context, moduleName, platform);

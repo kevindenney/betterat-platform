@@ -11,7 +11,7 @@ import {
   type ClassSuggestion,
   type VenueSuggestion,
 } from '@/services/ClubOnboardingService';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 const logger = createLogger('useClubSuggestions');
 

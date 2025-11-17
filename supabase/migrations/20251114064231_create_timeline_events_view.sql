@@ -11,7 +11,7 @@ with regatta_events as (
       when coalesce(r.end_date, r.start_date) >= now() then 'active'
       else 'completed'
     end as status,
-    nullif(coalesce(r.location, r.metadata->>'venue'), '') as location,
+    nullif(coalesce(r.location::text, r.metadata->>'venue'), '') as location,
     coalesce(
       nullif(r.metadata->>'summary', ''),
       nullif(r.description, ''),
@@ -19,7 +19,7 @@ with regatta_events as (
         ' • ',
         to_char(r.start_date, 'Mon DD'),
         to_char(r.start_date, 'HH24:MI'),
-        nullif(coalesce(r.location, r.metadata->>'venue'), '')
+        nullif(coalesce(r.location::text, r.metadata->>'venue'), '')
       )
     ) as summary
   from public.regattas r

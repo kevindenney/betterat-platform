@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { supabase } from './supabase';
 import { isUuid } from '@/utils/uuid';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 import MutationQueueService from './MutationQueueService';
 
 const TABLE_NAME = 'user_manual_clubs';

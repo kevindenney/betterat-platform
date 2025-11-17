@@ -5,7 +5,7 @@
 
 import { supabase } from './supabase';
 import { fleetService } from './fleetService';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 const logger = createLogger('RaceSuggestionService');
 const stringifyPatternData = (value: Record<string, unknown> | null | undefined) =>

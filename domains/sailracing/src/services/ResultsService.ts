@@ -6,7 +6,7 @@
 
 import { supabase } from './supabase';
 import { ScoringEngine, ScoringConfiguration, SeriesStanding, DEFAULT_LOW_POINT_CONFIG } from './scoring/ScoringEngine';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 export interface RegattaWithResults {
   id: string;

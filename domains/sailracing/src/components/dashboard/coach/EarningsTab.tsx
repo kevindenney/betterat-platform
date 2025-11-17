@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { DashboardSection, DashboardKPICard } from '../shared';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../../utils/logger';
 
 interface EarningsData {
   monthly: {

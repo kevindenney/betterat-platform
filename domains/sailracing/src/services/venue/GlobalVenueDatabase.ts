@@ -6,7 +6,7 @@
  */
 
 import { SupabaseVenueService } from './SupabaseVenueService';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 import type {
   SailingVenue,
   VenueType,

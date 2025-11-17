@@ -8,9 +8,9 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { Play, Square, Navigation } from 'lucide-react-native';
-import { gpsTracker } from '@/services/GPSTracker';
+import { gpsTracker } from '../../services/GPSTracker';
 import { supabase } from '@betterat/core/database';
-import { useAuth } from '@/providers/AuthProvider';
+import { useAuth } from '@betterat/core';
 
 const DEFAULT_RACE_TIME = '10:00';
 

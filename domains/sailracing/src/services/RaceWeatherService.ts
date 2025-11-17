@@ -13,9 +13,9 @@ import type {
   VenueCulturalProfile,
   WeatherSourceConfig,
   YachtClub,
-} from '@/types/venues';
+} from '../types/venues';
 import type { WeatherData } from './weather/RegionalWeatherService';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 export interface RaceWeatherMetadata {
   wind: {

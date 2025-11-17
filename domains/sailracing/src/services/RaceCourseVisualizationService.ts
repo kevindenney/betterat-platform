@@ -1,6 +1,6 @@
 // @ts-nocheck
 import maplibregl from 'maplibre-gl';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 interface RaceCourse3D {
   course_id: string;

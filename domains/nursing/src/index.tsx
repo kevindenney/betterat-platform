@@ -10,6 +10,9 @@ import { Button } from '@betterat/ui';
 import Dashboard from './screens/Dashboard';
 import Operations from './screens/Operations';
 import Discovery from './screens/Discovery';
+import Teams from './screens/Teams';
+import Pathways from './screens/Pathways';
+import MoreScreen from './screens/More';
 
 const clinicalSimulation = createActivityType({
   id: 'clinical-simulation',
@@ -37,6 +40,7 @@ const clinicalSimulation = createActivityType({
       <Button
         title="Save sample"
         variant="secondary"
+        style={{}}
         onPress={() =>
           onSave({
             skill: 'Airway management',
@@ -79,15 +83,11 @@ const nursingDefinition: any = {
     Dashboard,
     Operations,
     Discovery,
+    Teams,
+    Pathways,
+    More: MoreScreen,
   },
   routes: [
-    {
-      path: '/dashboard',
-      component: Dashboard,
-      name: 'Dashboard',
-      tabLabel: 'Dashboard',
-      tabIcon: '🩺',
-    },
     {
       path: '/operations',
       component: Operations,
@@ -96,11 +96,32 @@ const nursingDefinition: any = {
       tabIcon: '📅',
     },
     {
-      path: '/discovery',
+      path: '/teams',
+      component: Teams,
+      name: 'Teams',
+      tabLabel: 'Teams',
+      tabIcon: '👥',
+    },
+    {
+      path: '/pathways',
+      component: Pathways,
+      name: 'Pathways',
+      tabLabel: 'Pathways',
+      tabIcon: '🧭',
+    },
+    {
+      path: '/network',
       component: Discovery,
-      name: 'Discovery',
-      tabLabel: 'Discovery',
-      tabIcon: '🗺️',
+      name: 'Network',
+      tabLabel: 'Network',
+      tabIcon: '🌐',
+    },
+    {
+      path: '/more',
+      component: MoreScreen,
+      name: 'More',
+      tabLabel: 'More',
+      tabIcon: '☰',
     },
   ],
   activityTypes: [clinicalSimulation],

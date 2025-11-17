@@ -1,5 +1,5 @@
 import type { CoachProfile } from './CoachingService';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 /**
  * Shared pre-race strategy that a sailor can send to a coach for review.

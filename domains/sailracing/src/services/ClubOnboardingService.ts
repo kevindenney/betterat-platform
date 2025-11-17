@@ -9,7 +9,7 @@ import { supabase } from './supabase';
 import { LocationDetectionService, type SailingVenue, type GPSCoordinates } from './LocationDetectionService';
 import { ClubDiscoveryService, type YachtClub } from './ClubDiscoveryService';
 import { FleetDiscoveryService, type Fleet } from './FleetDiscoveryService';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 const logger = createLogger('ClubOnboardingService');
 

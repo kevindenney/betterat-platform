@@ -4,7 +4,7 @@ import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-nati
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { DashboardSection } from '../shared';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../../utils/logger';
 
 interface RaceStrategy {
   id: string;

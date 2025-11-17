@@ -21,7 +21,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useAuth } from '@/providers/AuthProvider';
 import { signOutEverywhere } from '@/lib/auth-actions';
-import { getDashboardRoute } from '@/lib/utils/userTypeRouting';
+import { getDashboardRoute } from '@betterat/core/lib/utils/userTypeRouting';
 
 interface AppHeaderProps {
   transparent?: boolean;

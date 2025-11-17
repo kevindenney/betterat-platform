@@ -35,3 +35,6 @@ export * from './services/SailorRacePreparationService';
 export * from './services/VenueIntelligenceService';
 export * from './services/venue/RegionalIntelligenceService';
 export * from './services/agents/VenueIntelligenceAgent';
+export * from './services/RaceStrategyService';
+export * from './services/strategyHistory';
+export * from './types/strategy';

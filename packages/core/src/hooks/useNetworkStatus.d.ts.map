@@ -1,0 +1,1 @@
+{"version":3,"file":"useNetworkStatus.d.ts","sourceRoot":"","sources":["useNetworkStatus.ts"],"names":[],"mappings":"AAEA,OAAgB,EAAE,KAAK,YAAY,EAAE,MAAM,iCAAiC,CAAC;AAE7E,MAAM,WAAW,aAAa;IAC5B,QAAQ,EAAE,OAAO,CAAC;IAClB,YAAY,EAAE,OAAO,CAAC;IACtB,cAAc,EAAE,YAAY,CAAC,MAAM,CAAC,CAAC;CACtC;AAED,wBAAgB,gBAAgB,IAAI,aAAa,CAsBhD"}

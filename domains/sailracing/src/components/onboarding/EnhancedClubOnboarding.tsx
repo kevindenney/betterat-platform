@@ -23,7 +23,7 @@ import { ClubOnboardingService, type ClubSuggestion, type ClassSuggestion } from
 import { useClubSuggestions } from '@/hooks/useClubSuggestions';
 import { SuggestionChip } from './SuggestionChip';
 import { CollapsibleSection, FormField, AutocompleteField, ChipListField } from './ClubFormSection';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 const logger = createLogger('EnhancedClubOnboarding');
 

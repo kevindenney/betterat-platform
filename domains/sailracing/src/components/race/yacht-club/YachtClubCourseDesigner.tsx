@@ -6,7 +6,7 @@ import { ThemedView } from '../../themed-view';
 import { Button } from '../../ui/button';
 import { CourseMap } from '../shared/CourseMap';
 import { RaceCourse, Mark, WeatherData } from '../RaceBuilder';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../../utils/logger';
 
 interface YachtClubCourseDesignerProps {
   course: RaceCourse | null;

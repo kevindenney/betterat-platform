@@ -7,7 +7,7 @@ import { useApi, useMutation, usePaginatedQuery, usePullToRefreshReturn, usePull
 import { Tables, TablesInsert, TablesUpdate, UserType } from '@/services/supabase';
 import { getDemoWorkspace } from '@/services/demo/demoWorkspace';
 import { useLiveRaces } from './useRaceResults';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 import type { AiCoachAnalysisSummary, RaceTimerSessionSummary } from '@/types/raceAnalysis';
 
 const logger = createLogger('useData');

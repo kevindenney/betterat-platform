@@ -1,0 +1,49 @@
+// @ts-nocheck
+import React from 'react';
+import { View, Pressable, StyleSheet, Platform, } from 'react-native';
+import { colors } from '../theme/colors';
+import { spacing } from '../theme/spacing';
+export const Card = ({ children, onPress, style }) => {
+    const baseCardStyle = Platform.OS === 'web' ? styles.cardWeb : styles.cardNative;
+    const cardStyle = [baseCardStyle, style].filter(Boolean);
+    if (onPress) {
+        return (<Pressable style={({ pressed }) => [
+                cardStyle,
+                pressed && styles.pressed,
+            ]} onPress={onPress}>
+        {children}
+      </Pressable>);
+    }
+    return <View style={cardStyle}>{children}</View>;
+};
+const baseCardStyle = {
+    backgroundColor: colors.white,
+    borderRadius: 12,
+    padding: spacing.md,
+};
+const nativeShadowStyle = Platform.OS === 'web'
+    ? {}
+    : {
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+    };
+const styles = StyleSheet.create({
+    cardWeb: {
+        ...baseCardStyle,
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    },
+    cardNative: {
+        ...baseCardStyle,
+        ...nativeShadowStyle,
+    },
+    pressed: {
+        opacity: 0.8,
+        transform: [{ scale: 0.98 }],
+    },
+});

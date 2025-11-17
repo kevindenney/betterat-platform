@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Dimensions, TouchableOpacity, Animated, Platform, Image } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import type { Map3DConfig, RaceMark, WeatherConditions } from '@/lib/types/map';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 interface Map3DViewProps {
   config?: Partial<Map3DConfig>

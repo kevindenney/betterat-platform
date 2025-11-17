@@ -9,7 +9,7 @@ import { CourseTemplateLibrary } from './CourseTemplateLibrary';
 import { WeatherIntegration } from './WeatherIntegration';
 import { CourseValidation } from './CourseValidation';
 import { CourseMap } from './shared/CourseMap';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 export interface RaceCourse {
   id: string;

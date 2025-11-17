@@ -8,7 +8,7 @@ import { supabase } from '../supabase';
 import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 export interface StoredDocument {
   id: string;

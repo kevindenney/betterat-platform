@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { DashboardSection } from '../shared';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../../utils/logger';
 
 interface VenueData {
   id: string;

@@ -6,7 +6,7 @@
  */
 
 import { supabase } from '@betterat/core/database';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 export interface ComprehensiveRaceData {
   // Basic Information

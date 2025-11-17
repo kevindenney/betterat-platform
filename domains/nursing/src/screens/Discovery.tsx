@@ -201,6 +201,8 @@ const DiscoveryScreen: React.FC<DomainDashboardProps> = ({ userId, services }) =
     <MapControls
       onToggle3D={() => setIsThreeDEnabled((prev) => !prev)}
       onToggleLayers={() => setAreLayersVisible((prev) => !prev)}
+      onSearchNearby={() => {}}
+      onSettings={() => {}}
       onToggleSavedVenues={() => setShowOnlySaved((prev) => !prev)}
       is3DEnabled={isThreeDEnabled}
       areLayersVisible={areLayersVisible}
@@ -247,6 +249,7 @@ const DiscoveryScreen: React.FC<DomainDashboardProps> = ({ userId, services }) =
       controls={controls}
       detailsSheet={detailsSheet}
       mapOverlay={mapOverlay}
+      rightPanel={null}
     />
   );
 };

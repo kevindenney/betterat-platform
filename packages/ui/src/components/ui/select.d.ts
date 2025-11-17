@@ -1,0 +1,19 @@
+export type Select = any;
+export type SelectProps = any;
+export declare const Select: any;
+export type SelectTrigger = any;
+export type SelectTriggerProps = any;
+export declare const SelectTrigger: any;
+export type SelectInput = any;
+export type SelectInputProps = any;
+export declare const SelectInput: any;
+export type SelectContent = any;
+export type SelectContentProps = any;
+export declare const SelectContent: any;
+export type SelectItem = any;
+export type SelectItemProps = any;
+export declare const SelectItem: any;
+export type select = any;
+export type selectProps = any;
+export declare const select: any;
+//# sourceMappingURL=select.d.ts.map

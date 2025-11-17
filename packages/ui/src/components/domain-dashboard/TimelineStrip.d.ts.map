@@ -1,0 +1,1 @@
+{"version":3,"file":"TimelineStrip.d.ts","sourceRoot":"","sources":["TimelineStrip.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAkB,MAAM,OAAO,CAAC;AAEvC,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,sBAAsB,CAAC;AAEzD,UAAU,kBAAkB;IAC1B,MAAM,EAAE,YAAY,EAAE,CAAC;IACvB,WAAW,CAAC,EAAE,IAAI,CAAC;CACpB;AAID,eAAO,MAAM,aAAa,EAAE,KAAK,CAAC,EAAE,CAAC,kBAAkB,CAyFtD,CAAC"}

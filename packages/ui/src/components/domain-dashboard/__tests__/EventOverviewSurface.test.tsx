@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { render } from '@testing-library/react-native';
 import { EventOverviewSurface, type EventOverviewProps } from '../EventOverview';
-import { mockColorScheme, resetColorSchemeMock } from '../../../../test-utils/mockColorScheme';
+import { mockColorScheme, resetColorSchemeMock } from '../../../test-utils/mockColorScheme';
 
 const hero = {
   title: 'Marina Bay Invitational',

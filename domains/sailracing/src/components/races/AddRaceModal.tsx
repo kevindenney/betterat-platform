@@ -5,7 +5,7 @@
  * AI extracts race details and saves to database
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -20,6 +20,9 @@ import { X, Upload, FileText, Sparkles } from 'lucide-react-native';
 import * as DocumentPicker from 'expo-document-picker';
 import { useAuth } from '@/providers/AuthProvider';
 import { supabase } from '@betterat/core/database';
+import { type SailorBoat } from '@betterat/core';
+import { fetchOrgAssignmentSuggestions, type OrgAssignmentSuggestion } from '@betterat/core/services/orgAssignments';
+import { OrgSuggestionList } from '@betterat/ui';
 import { RaceExtractionAgent } from '@/services/agents/RaceExtractionAgent';
 import { BoatSelector } from './BoatSelector';
 import { createLogger } from '@betterat/core/lib/utils/logger';
@@ -59,9 +62,41 @@ export function AddRaceModal({ visible, onClose, onRaceAdded }: AddRaceModalProp
   const [isProcessing, setIsProcessing] = useState(false);
   const [uploadMode, setUploadMode] = useState<'text' | 'document'>('text');
   const [selectedBoatId, setSelectedBoatId] = useState<string | undefined>();
+  const [selectedBoat, setSelectedBoat] = useState<SailorBoat | undefined>();
+  const [orgSuggestions, setOrgSuggestions] = useState<OrgAssignmentSuggestion[]>([]);
+  const [boatError, setBoatError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadSuggestions = async () => {
+      if (!user) return;
+      const items = await fetchOrgAssignmentSuggestions('sailracing', user.id);
+      setOrgSuggestions(items);
+    };
+    loadSuggestions();
+  }, [user]);
+
+  const applySuggestion = (suggestion: OrgAssignmentSuggestion) => {
+    if (suggestion.templateText) {
+      setInputText(suggestion.templateText);
+    }
+    Alert.alert('Loaded details', `${suggestion.title} from ${suggestion.orgName}`);
+  };
+
+  useEffect(() => {
+    if (selectedBoatId && boatError) {
+      setBoatError(null);
+    }
+  }, [selectedBoatId, boatError]);
 
   const handleTextExtraction = async () => {
     if (!inputText.trim() || !user) return;
+
+    if (!selectedBoatId || !selectedBoat) {
+      const message = 'Choose your boat so we can tailor rig tuning suggestions for this race.';
+      setBoatError(message);
+      Alert.alert('Select a boat', message);
+      return;
+    }
 
     setIsProcessing(true);
 
@@ -70,7 +105,10 @@ export function AddRaceModal({ visible, onClose, onRaceAdded }: AddRaceModalProp
 
       // Use Anthropic Agent SDK for intelligent extraction
       const agent = new RaceExtractionAgent();
-      const result = await agent.extractRaceData(inputText);
+      const result = await agent.extractRaceData(inputText, {
+        boatName: selectedBoat.name,
+        boatClass: selectedBoat.boat_class?.name,
+      });
 
       logger.debug('[AddRaceModal] Extraction result:', result);
 
@@ -85,12 +123,27 @@ export function AddRaceModal({ visible, onClose, onRaceAdded }: AddRaceModalProp
       }
 
       const extracted = result.data;
+      const boatMetadata = selectedBoat
+        ? {
+            id: selectedBoat.id,
+            name: selectedBoat.name,
+            sail_number: selectedBoat.sail_number,
+            class: selectedBoat.boat_class
+              ? {
+                  id: selectedBoat.boat_class.id,
+                  name: selectedBoat.boat_class.name,
+                  manufacturer: selectedBoat.boat_class.manufacturer,
+                  slug: selectedBoat.boat_class.slug,
+                }
+              : null,
+          }
+        : null;
 
       // Save to Supabase - match actual schema with created_by field
       const { data, error } = await supabase.from('regattas').insert({
         created_by: user.id,
         name: extracted.name,
-        boat_id: selectedBoatId || null,
+        boat_id: selectedBoatId,
         location: null, // PostGIS geography type - set to null for now
         metadata: {
           venue_name: extracted.venue,
@@ -99,6 +152,7 @@ export function AddRaceModal({ visible, onClose, onRaceAdded }: AddRaceModalProp
           strategy: extracted.strategy,
           critical_details: extracted.critical_details,
           startTime: extracted.startTime || '10:00',
+          boat: boatMetadata,
         },
         start_date: extracted.date,
         end_date: extracted.date, // Single day race by default
@@ -229,6 +283,12 @@ export function AddRaceModal({ visible, onClose, onRaceAdded }: AddRaceModalProp
                 </Text>
               </View>
 
+              <OrgSuggestionList
+                title="Upcoming races from your clubs"
+                suggestions={orgSuggestions}
+                onApply={applySuggestion}
+              />
+
               <TextInput
                 value={inputText}
                 onChangeText={setInputText}
@@ -249,15 +309,23 @@ export function AddRaceModal({ visible, onClose, onRaceAdded }: AddRaceModalProp
                 <BoatSelector
                   selectedBoatId={selectedBoatId}
                   onSelect={setSelectedBoatId}
-                  showQuickAdd={false}
+                  showQuickAdd
+                  required
+                  onBoatChange={setSelectedBoat}
                 />
+                {boatError && (
+                  <Text className="text-red-500 text-xs mt-1">{boatError}</Text>
+                )}
+                <Text className="text-xs text-gray-500 mt-2">
+                  Rig tuning AI needs to know which boat you\'re racing to personalize settings.
+                </Text>
               </View>
 
               <TouchableOpacity
                 onPress={handleTextExtraction}
-                disabled={!inputText.trim() || isProcessing}
+                disabled={!inputText.trim() || !selectedBoatId || isProcessing}
                 className={`py-4 rounded-lg ${
-                  inputText.trim() && !isProcessing
+                  inputText.trim() && selectedBoatId && !isProcessing
                     ? 'bg-sky-600'
                     : 'bg-gray-300'
                 }`}

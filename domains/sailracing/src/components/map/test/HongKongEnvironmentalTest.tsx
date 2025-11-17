@@ -18,7 +18,7 @@ import { View, Text, ActivityIndicator, StyleSheet, Platform } from 'react-nativ
 import { EnvironmentalAnalysisService, type EnvironmentalAnalysis } from '@/services/EnvironmentalAnalysisService';
 import { EnvironmentalVisualizationService } from '@/services/visualization/EnvironmentalVisualizationService';
 import type { SailingVenue } from '../../../types/venues';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../../utils/logger';
 import { buildEnvironmentalDeckLayers } from '@/components/map/layers/buildEnvironmentalDeckLayers';
 
 // MapLibre imports (web only)

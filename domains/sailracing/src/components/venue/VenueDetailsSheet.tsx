@@ -14,7 +14,7 @@ import {
   Dimensions,
   Platform,
 } from 'react-native';
-import { ThemedText } from '@/components/themed-text';
+import { ThemedText } from '../themed-text';
 import { Ionicons } from '@expo/vector-icons';
 import { supabase } from '@betterat/core/database';
 import { useRouter } from 'expo-router';

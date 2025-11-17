@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { supabase } from '@/services/supabase';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 const logger = createLogger('CoachSelectionModal');
 

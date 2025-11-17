@@ -1,21 +1,50 @@
 import { supabase } from '../database/client';
-const FALLBACK_LIMIT = 12;
+const isDev = process.env.NODE_ENV !== 'production';
+const timelineDebug = (...args) => {
+    if (isDev) {
+        console.debug('[TimelineService]', ...args);
+    }
+};
+const FALLBACK_LIMIT = 30;
+const LOOKBACK_DAYS = 30; // Increased from 7 to 30 days
+const LOOKAHEAD_DAYS = 90; // Increased from 60 to 90 days
+const timelineWindow = () => {
+    const now = Date.now();
+    const start = new Date(now - LOOKBACK_DAYS * 24 * 60 * 60 * 1000).toISOString();
+    const end = new Date(now + LOOKAHEAD_DAYS * 24 * 60 * 60 * 1000).toISOString();
+    return { start, end };
+};
 export const fetchTimelineEvents = async (domainId) => {
+    timelineDebug('fetchTimelineEvents:start', { domainId });
+    const window = timelineWindow();
+    timelineDebug('timelineWindow', window);
     const { data, error } = await supabase
         .from('timeline_events')
         .select('*')
         .eq('domain_id', domainId)
-        .order('start_time', { ascending: true });
+        .gte('start_time', window.start)
+        .lte('start_time', window.end)
+        .order('start_time', { ascending: true })
+        .limit(30);
     if (data && data.length > 0) {
+        timelineDebug('timeline_events hit', { domainId, count: data.length });
         return data;
+    }
+    if (error) {
+        timelineDebug('timeline_events query error', error);
+    }
+    else {
+        timelineDebug('timeline_events empty result', { domainId });
     }
     const shouldUseYachtracingFallback = await needsYachtracingFallback(domainId, error);
     if (shouldUseYachtracingFallback) {
+        timelineDebug('falling back to regattas timeline', { domainId });
         return fetchYachtracingTimelineFallback();
     }
     if (error) {
         throw error;
     }
+    timelineDebug('returning empty timeline data', { domainId });
     return (data ?? []);
 };
 const needsYachtracingFallback = async (domainId, error) => {
@@ -29,19 +58,26 @@ const needsYachtracingFallback = async (domainId, error) => {
     return !sessionData.session;
 };
 const fetchYachtracingTimelineFallback = async () => {
+    timelineDebug('fetchYachtracingTimelineFallback:start');
+    const window = timelineWindow();
     const { data, error } = await supabase
         .from('regattas')
         .select('id, name, start_date, end_date, venue, organizing_authority')
+        .gte('start_date', window.start)
+        .lte('start_date', window.end)
         .order('start_date', { ascending: true })
         .limit(FALLBACK_LIMIT);
     if (error) {
+        timelineDebug('regattas fallback error', error);
         throw error;
     }
-    return (data ?? []).map((regatta) => mapRegattaToTimelineEvent(regatta));
+    const mapped = (data ?? []).map((regatta) => mapRegattaToTimelineEvent(regatta));
+    timelineDebug('regattas fallback success', { count: mapped.length });
+    return mapped;
 };
 const mapRegattaToTimelineEvent = (regatta) => {
     const startDate = parseDate(regatta.start_date);
-    const isoStart = (startDate === null || startDate === void 0 ? void 0 : startDate.toISOString()) ?? new Date().toISOString();
+    const isoStart = startDate?.toISOString() ?? new Date().toISOString();
     return {
         id: regatta.id,
         title: regatta.name ?? 'Scheduled regatta',
@@ -113,23 +149,28 @@ const parseDate = (value) => {
     return parsed;
 };
 const extractRegattaLocation = (regatta) => {
-    const venue = regatta.venue;
-    if (typeof venue === 'string' && venue.trim().length > 0) {
-        return venue.trim();
+    // Primary field: venue column
+    if (typeof regatta.venue === 'string' && regatta.venue.trim()) {
+        return regatta.venue.trim();
     }
-    if (venue && typeof venue === 'object') {
-        const name = typeof venue.name === 'string' ? venue.name : null;
-        const location = typeof venue.location === 'string' ? venue.location : null;
-        const club = typeof venue.club === 'string' ? venue.club : null;
-        if (name && name.trim())
-            return name.trim();
-        if (location && location.trim())
-            return location.trim();
-        if (club && club.trim())
-            return club.trim();
-    }
+    // Fallback: organizing_authority
     if (typeof regatta.organizing_authority === 'string' && regatta.organizing_authority.trim()) {
         return regatta.organizing_authority.trim();
+    }
+    // Optional: location field if it exists
+    if (regatta.location && typeof regatta.location === 'string' && regatta.location.trim()) {
+        return regatta.location.trim();
+    }
+    // Metadata often contains venue/location hints
+    const metadata = regatta.metadata && typeof regatta.metadata === 'object' ? regatta.metadata : null;
+    if (metadata) {
+        const candidates = ['venue', 'location', 'club'];
+        for (const key of candidates) {
+            const value = metadata[key];
+            if (typeof value === 'string' && value.trim()) {
+                return value.trim();
+            }
+        }
     }
     return null;
 };

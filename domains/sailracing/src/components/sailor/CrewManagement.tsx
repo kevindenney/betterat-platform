@@ -27,7 +27,7 @@ import {
     View,
 } from 'react-native';
 import { CardMenu, CardMenuItem } from '../shared';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 interface CrewManagementProps {
   sailorId: string;

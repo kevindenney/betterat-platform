@@ -5,7 +5,7 @@
  */
 
 import { supabase } from './supabase';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 // SendGrid configuration
 

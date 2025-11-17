@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Animated, Vibration, Platform, Alert, ActivityIndicator } from 'react-native';
 import * as Location from 'expo-location';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../../utils/logger';
 
 interface NextRaceCardProps {
   raceId: string;

@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import { VenueOverview, type VenueOverviewProps } from '../VenueOverview';
 import type { MapLayers } from '../MapControls';
-import { mockColorScheme, resetColorSchemeMock } from '../../../../test-utils/mockColorScheme';
+import { mockColorScheme, resetColorSchemeMock } from '../../../test-utils/mockColorScheme';
 
 const mockLayers: MapLayers = {
   yachtClubs: true,

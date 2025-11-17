@@ -2,7 +2,7 @@
 
 import { supabase } from './supabase';
 import { RealtimeChannel, RealtimePostgresChangesPayload } from '@supabase/supabase-js';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 const logger = createLogger('RealtimeService');
 

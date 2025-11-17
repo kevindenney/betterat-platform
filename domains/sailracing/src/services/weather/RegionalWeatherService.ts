@@ -15,7 +15,7 @@ import type {
   WeatherParameter
 } from '@/types/venues';
 import type { AdvancedWeatherConditions } from '@/types/map';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 import StormGlassServiceClass from './StormGlassService';
 const StormGlassService = StormGlassServiceClass;
 import Constants from 'expo-constants';

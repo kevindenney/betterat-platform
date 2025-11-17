@@ -33,6 +33,11 @@ export interface ExtractedRaceData {
   };
 }
 
+interface RaceExtractionContext {
+  boatName?: string;
+  boatClass?: string;
+}
+
 export class RaceExtractionAgent extends BaseAgentService {
   constructor() {
     super({
@@ -72,19 +77,34 @@ Return structured JSON data. If critical fields (name, venue, date) cannot be fo
   /**
    * Main extraction method - analyzes text and extracts race data
    */
-  async extractRaceData(text: string): Promise<{
+  async extractRaceData(text: string, context?: RaceExtractionContext): Promise<{
     success: boolean;
     data?: ExtractedRaceData;
     error?: string;
     missingFields?: string[];
   }> {
     try {
+      const boatContextLines: string[] = [];
+      if (context?.boatName) {
+        boatContextLines.push(`Boat name: ${context.boatName}`);
+      }
+      if (context?.boatClass) {
+        boatContextLines.push(`Boat class/type: ${context.boatClass}`);
+      }
+
+      const boatContext =
+        boatContextLines.length > 0
+          ? `\n\nBoat context for rig tuning recommendations:\n${boatContextLines
+              .map((line) => `- ${line}`)
+              .join('\n')}\nUse this to inform any rig tuning or setup suggestions.`
+          : '';
+
       const response = await this.run({
         userMessage: `Extract race details from the following text. Be thorough and intelligent about finding race information:
 
 ${text}
 
-Use the extract_race_data tool to return the extracted information. If you cannot find required fields (name, venue, or date), set them as null and list what's missing in the missing_fields array.`,
+Use the extract_race_data tool to return the extracted information. If you cannot find required fields (name, venue, or date), set them as null and list what's missing in the missing_fields array.${boatContext}`,
         maxIterations: 2, // Should only need 1 iteration for extraction
       });
 

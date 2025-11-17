@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 type MutationType = 'upsert' | 'delete' | 'bulk-sync';
 

@@ -6,9 +6,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
-import { ThemedText } from '@/components/themed-text';
+import { ThemedText } from '../themed-text';
 import { useVenueIntelligence } from '@betterat/core/hooks/useVenueIntelligence';
-import type { RegionalIntelligenceData } from '@/services/venue/RegionalIntelligenceService';
+import type { RegionalIntelligenceData } from '../../services/venue/RegionalIntelligenceService';
 
 const isMissingTableError = (error: unknown) => {
   if (!error || typeof error !== 'object') return false;

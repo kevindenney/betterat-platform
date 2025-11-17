@@ -6,7 +6,7 @@
 
 import { supabase } from './supabase';
 import * as Location from 'expo-location';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 export interface GPSTrackPoint {
   timestamp: string;

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { createLogger } from '@/utils/logger';
+import { createLogger } from './logger';
 
 const logger = createLogger('authDebug');
 export const bindAuthDiagnostics = (supabase: any) => {

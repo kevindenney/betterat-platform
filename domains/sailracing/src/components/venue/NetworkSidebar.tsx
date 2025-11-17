@@ -15,11 +15,11 @@ import {
   ActivityIndicator,
   TextInput,
 } from 'react-native';
-import { ThemedText } from '@/components/themed-text';
+import { ThemedText } from '../themed-text';
 import { Ionicons } from '@expo/vector-icons';
 import { SavedNetworkSection } from './SavedNetworkSection';
-import { SailingNetworkService, type ServiceType } from '@/services/SailingNetworkService';
-import type { NetworkPlace } from '@/services/SailingNetworkService';
+import { SailingNetworkService, type ServiceType } from '../../services/SailingNetworkService';
+import type { NetworkPlace } from '../../services/SailingNetworkService';
 import { supabase } from '@betterat/core/database';
 import { getShadowStyle } from '@betterat/core/lib/styles/shadow';
 

@@ -40,15 +40,15 @@ import { RaceDetailMapHero } from '@/components/race-detail/RaceDetailMapHero';
 // import { WindWeatherCard } from '@/components/race-detail/WindWeatherCard';
 // import { CourseCard } from '@/components/race-detail/CourseCard';
 import { RaceWeatherService } from '@/services/RaceWeatherService';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 const logger = createLogger('RacesScreen');
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
-// Card dimensions from RaceCard component
-const CARD_WIDTH = 240;
+// Card dimensions from RaceCard component - landscape layout
+const CARD_WIDTH = 320;  // Updated to match yacht-racing horizontal carousel
 const CARD_MARGIN = 12; // 6px on each side
-const CARD_TOTAL_WIDTH = CARD_WIDTH + CARD_MARGIN * 2;
+const CARD_TOTAL_WIDTH = CARD_WIDTH + CARD_MARGIN * 2; // 344px total
 
 // Enable demo mode for testing (updated for cache bust)
 const DEMO_MODE = true;
@@ -137,6 +137,25 @@ export default function RacesScreen() {
   const { user } = useAuth();
   const router = useRouter();
   const carouselRef = useRef<ScrollView>(null);
+  const renderAddRaceCard = useCallback(() => (
+    <Pressable
+      key="add-race-card"
+      style={styles.addRaceCard}
+      onPress={() => {
+        logger.debug('[AddRace] Navigating to add race screen');
+        router.push('/race/add');
+      }}
+    >
+      <Text style={styles.addRaceNowLabel}>NOW</Text>
+      <View style={styles.addRaceCardBody}>
+        <View style={styles.addRaceIcon}>
+          <Plus size={32} color="#3B82F6" strokeWidth={3} />
+        </View>
+        <Text style={styles.addRaceText}>Add Race</Text>
+        <Text style={styles.addRaceSubtext}>Create a new race entry</Text>
+      </View>
+    </Pressable>
+  ), [router]);
 
   const [races, setRaces] = useState<RaceWithStatus[]>([]);
   const [selectedRaceId, setSelectedRaceId] = useState<string | null>(null);
@@ -177,10 +196,10 @@ export default function RacesScreen() {
         logger.debug('[fetchRaces] Fetching races for user', user.id);
 
         const { data: dbData, error } = await supabase
-          .from('regattas')
+          .from('race_events')
           .select('*')
-          .eq('user_id', user.id)
-          .order('race_date', { ascending: true })
+          .eq('club_id', user.id)
+          .order('event_date', { ascending: true })
           .order('start_time', { ascending: true });
 
         if (error) {
@@ -194,7 +213,31 @@ export default function RacesScreen() {
           return;
         }
 
-        data = dbData;
+        data = dbData.map((race) => {
+          const weatherMeta = race.weather_conditions || {};
+          const venueLabel =
+            weatherMeta.location_name ||
+            weatherMeta.venue_name ||
+            race.metadata?.venue_name ||
+            race.venue_name ||
+            'Venue TBD';
+
+          return {
+            id: race.id,
+            name: race.name || 'Untitled Race',
+            venue_name: venueLabel,
+            race_date: race.event_date,
+            start_time: race.start_time,
+            metadata: {
+              ...race.metadata,
+              venue_name: venueLabel,
+              location_coordinates: weatherMeta.location_coordinates || race.metadata?.location_coordinates,
+              weather: weatherMeta,
+              weather_fetched_at: weatherMeta.fetched_at,
+            },
+            weather_conditions: weatherMeta,
+          } satisfies Race;
+        });
       }
 
       // Process races and determine statuses
@@ -271,16 +314,33 @@ export default function RacesScreen() {
   // Convert race data to RaceCard props
   const getRaceCardProps = useCallback((race: RaceWithStatus): RaceCardProps => {
     const metadata = race.metadata || {};
+    const weather = race.weather_conditions || {};
+    const venueLabel = race.venue_name || weather.location_name || 'No venue';
 
     return {
       id: race.id,
       name: race.name || 'Untitled Race',
-      venue: race.venue_name || 'No venue',
+      venue: venueLabel,
+      locationName: venueLabel,
+      locationCoordinates: metadata.location_coordinates || weather.location_coordinates,
       date: race.race_date,
       startTime: race.start_time || '00:00',
-      wind: metadata.wind || null,
-      tide: metadata.tide || null,
-      weatherStatus: metadata.weather_fetched_at ? 'available' : 'unavailable',
+      wind: metadata.wind || (weather.wind_speed
+        ? {
+            direction: weather.wind_direction || 'Variable',
+            speedMin: weather.wind_speed_min || weather.wind_speed,
+            speedMax: weather.wind_speed_max || weather.wind_speed,
+          }
+        : null),
+      tide: metadata.tide || (weather.tide_state
+        ? {
+            state: weather.tide_state as any,
+            height: weather.tide_height || 0,
+            direction: weather.tide_direction,
+          }
+        : null),
+      weatherStatus: weather.fetched_at ? 'available' : venueLabel ? 'unavailable' : 'no_venue',
+      weatherConditions: weather,
       strategy: metadata.strategy,
       critical_details: {
         vhf_channel: metadata.vhf_channel,
@@ -291,10 +351,12 @@ export default function RacesScreen() {
       raceStatus: race.raceStatus,
       isSelected: selectedRaceId === race.id,
       isDimmed: selectedRaceId !== null && selectedRaceId !== race.id,
-      showTimelineIndicator: race.raceStatus === 'next', // Show "now" bar for next race
+      showTimelineIndicator: race.raceStatus === 'next',
       onSelect: () => handleSelectRace(race.id, races.indexOf(race)),
     };
   }, [selectedRaceId, handleSelectRace, races]);
+
+  const hasNextRace = useMemo(() => races.some(r => r.raceStatus === 'next'), [races]);
 
   // Get selected race data for detail canvas
   const selectedRace = useMemo(() => {
@@ -321,9 +383,6 @@ export default function RacesScreen() {
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Your Races</Text>
-          <Text style={styles.headerSubtitle}>
-            {races.length} {races.length === 1 ? 'race' : 'races'} scheduled
-          </Text>
         </View>
 
         {/* Horizontal Race Carousel */}
@@ -340,33 +399,34 @@ export default function RacesScreen() {
             {(() => {
               console.log('🔍 [RENDER_DEBUG] About to render races. Count:', races.length);
               console.log('🔍 [RENDER_DEBUG] races array:', JSON.stringify(races.map(r => ({ id: r.id, name: r.name })), null, 2));
-              return races.map((race, index) => {
+              const items: React.ReactNode[] = [];
+              let addCardInserted = false;
+
+              races.forEach((race, index) => {
                 console.log(`🔍 [RENDER_DEBUG] Rendering race ${index}:`, race.id, race.name);
                 const props = getRaceCardProps(race);
                 console.log(`🔍 [RENDER_DEBUG] Props for race ${index}:`, JSON.stringify(props, null, 2));
-                return (
+                const shouldInsertBeforeThisCard = props.showTimelineIndicator || (!hasNextRace && index === 0);
+
+                if (!addCardInserted && shouldInsertBeforeThisCard) {
+                  items.push(renderAddRaceCard());
+                  addCardInserted = true;
+                }
+
+                items.push(
                   <RaceCard
                     key={race.id}
                     {...props}
                   />
                 );
               });
-            })()}
 
-            {/* Add Race CTA Card */}
-            <Pressable
-              style={styles.addRaceCard}
-              onPress={() => {
-                logger.debug('[AddRace] Navigating to add race screen');
-                router.push('/race/add');
-              }}
-            >
-              <View style={styles.addRaceIcon}>
-                <Plus size={32} color="#3B82F6" strokeWidth={3} />
-              </View>
-              <Text style={styles.addRaceText}>Add Race</Text>
-              <Text style={styles.addRaceSubtext}>Create a new race entry</Text>
-            </Pressable>
+              if (!addCardInserted) {
+                items.push(renderAddRaceCard());
+              }
+
+              return items;
+            })()}
           </ScrollView>
         </View>
 
@@ -585,16 +645,23 @@ const styles = StyleSheet.create({
   },
   addRaceCard: {
     width: CARD_WIDTH,
-    height: 400,
+    height: 280, // Match RaceCard height
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
     padding: 20,
     marginHorizontal: 12,
-    justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
     borderColor: '#E2E8F0',
     borderStyle: 'dashed',
+    justifyContent: 'flex-start',
+    paddingTop: 24,
+  },
+  addRaceCardBody: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
   },
   addRaceIcon: {
     width: 64,
@@ -615,6 +682,14 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#64748B',
     textAlign: 'center',
+  },
+  addRaceNowLabel: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#266D53',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+    marginBottom: 12,
   },
   detailCanvas: {
     marginHorizontal: 20,

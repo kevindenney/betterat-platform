@@ -27,6 +27,8 @@ interface BoatSelectorProps {
   onSelect: (boatId: string | undefined) => void;
   showQuickAdd?: boolean; // For crew scenario
   classId?: string; // Optional: Filter boats by class
+  required?: boolean;
+  onBoatChange?: (boat?: SailorBoat) => void;
 }
 
 const logger = createLogger('BoatSelector');
@@ -35,6 +37,8 @@ export function BoatSelector({
   onSelect,
   showQuickAdd = true,
   classId,
+  required = false,
+  onBoatChange,
 }: BoatSelectorProps) {
   const { user } = useAuth();
   const [boats, setBoats] = useState<SailorBoat[]>([]);
@@ -109,6 +113,11 @@ export function BoatSelector({
   }, [user, classId, onSelect, selectedBoatId]);
 
   useEffect(() => {
+    const selectedBoat = boats.find((boat) => boat.id === selectedBoatId);
+    onBoatChange?.(selectedBoat);
+  }, [boats, selectedBoatId, onBoatChange]);
+
+  useEffect(() => {
     loadBoats();
   }, [loadBoats]);
 
@@ -171,7 +180,12 @@ export function BoatSelector({
   return (
     <View style={styles.container}>
       <Text style={styles.label}>
-        Boat {boats.length > 0 && <Text style={styles.optional}>(Optional)</Text>}
+        Boat{' '}
+        {required ? (
+          <Text style={styles.required}>(Required)</Text>
+        ) : (
+          boats.length > 0 && <Text style={styles.optional}>(Optional)</Text>
+        )}
       </Text>
 
       {boats.length === 0 ? (
@@ -238,7 +252,9 @@ export function BoatSelector({
 
       <Text style={styles.helpText}>
         {boats.length > 0
-          ? 'Select the boat you\'re racing on. Leave blank if not applicable.'
+          ? required
+            ? 'Select the boat you\'re racing on so we can tailor rig tuning and race prep.'
+            : 'Select the boat you\'re racing on. Leave blank if not applicable.'
           : 'Add a boat to track your racing performance by vessel.'}
       </Text>
 
@@ -265,6 +281,10 @@ const styles = StyleSheet.create({
   optional: {
     fontWeight: '400',
     color: '#6B7280',
+  },
+  required: {
+    fontWeight: '500',
+    color: '#DC2626',
   },
   loadingContainer: {
     flexDirection: 'row',

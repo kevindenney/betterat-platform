@@ -6,7 +6,7 @@ import { logAuthEvent, logAuthState } from '@/utils/errToText'
 import { router } from 'expo-router'
 import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react'
 import { Platform } from 'react-native'
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../utils/logger';
 
 // Re-export UserType for backward compatibility
 export type { UserType } from '@/services/supabase'

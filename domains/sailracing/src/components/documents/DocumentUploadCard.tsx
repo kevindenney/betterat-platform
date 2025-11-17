@@ -22,7 +22,7 @@ import { DocumentProcessingService } from '@/services/ai/DocumentProcessingServi
 import { useAuth } from '@/providers/AuthProvider';
 import type { StoredDocument } from '@/services/storage/DocumentStorageService';
 import type { DocumentAnalysis, RaceCourseExtraction } from '@/lib/types/ai-knowledge';
-import { createLogger } from '@/utils/logger';
+import { createLogger } from '../../utils/logger';
 
 const logger = createLogger('DocumentUploadCard');
 

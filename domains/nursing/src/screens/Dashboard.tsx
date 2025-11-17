@@ -22,6 +22,7 @@ const NursingDashboard = () => {
 
   return (
     <ReadinessDashboard
+      error={null}
       hero={{
         title: 'Telemetry command · 07:00-19:00',
         description: 'BetterAt Nursing links staffing, acuity, and AI coaching into one deliberate practice view.',

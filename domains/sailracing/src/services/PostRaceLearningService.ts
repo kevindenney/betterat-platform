@@ -9,9 +9,9 @@
 import Anthropic from '@anthropic-ai/sdk';
 import Constants from 'expo-constants';
 
-import { createLogger } from '@/utils/logger';
-import { skillManagementService } from '@/services/ai/SkillManagementService';
-import { supabase } from '@/services/supabase';
+import { createLogger } from '../utils/logger';
+import { skillManagementService } from './ai/SkillManagementService';
+import { supabase } from './supabase';
 import type {
   RegattaFlowPlaybookFramework,
   CoachingFeedback,

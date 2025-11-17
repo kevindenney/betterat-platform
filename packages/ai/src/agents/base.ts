@@ -16,6 +16,18 @@ export interface AgentTool {
   execute: (input: any) => Promise<any>;
 }
 
+export interface AgentRunOptions {
+  userMessage: string;
+  maxIterations?: number;
+}
+
+export interface AgentRunResult {
+  success: boolean;
+  response?: any;
+  toolResults?: Record<string, any>;
+  error?: string;
+}
+
 export interface AgentConfig {
   model: string;
   maxTokens: number;
@@ -95,6 +107,73 @@ export class BaseAgentService {
         : input;
 
     return tool.execute(validatedInput);
+  }
+
+  async run(options: AgentRunOptions): Promise<AgentRunResult> {
+    const { userMessage, maxIterations = 1 } = options;
+
+    if (!userMessage?.trim()) {
+      return { success: false, error: 'userMessage is required' };
+    }
+
+    try {
+      const client = this.ensureClient();
+      const toolDefinitions = this.listTools().map((tool) => ({
+        name: tool.name,
+        description: tool.description,
+        input_schema: this.zodToAnthropicSchema(tool.input_schema),
+      }));
+
+      const messages: any[] = [{ role: 'user', content: userMessage }];
+      const toolResults: Record<string, any> = {};
+
+      for (let iteration = 0; iteration < maxIterations; iteration++) {
+        const response = await client.messages.create({
+          model: this.config.model,
+          max_tokens: this.config.maxTokens,
+          temperature: this.config.temperature,
+          system: this.config.systemPrompt,
+          messages,
+          tools: toolDefinitions.length ? toolDefinitions : undefined,
+        });
+
+        if (!response?.content?.length) {
+          return { success: true, response, toolResults };
+        }
+
+        let toolInvoked = false;
+        for (const block of response.content) {
+          if (block.type === 'tool_use') {
+            toolInvoked = true;
+            const { name, input, id } = block;
+            const result = await this.executeTool(name, input);
+            toolResults[name] = result;
+
+            messages.push({
+              role: 'user',
+              content: [
+                {
+                  type: 'tool_result',
+                  tool_use_id: id,
+                  content: JSON.stringify(result),
+                },
+              ],
+            });
+          }
+        }
+
+        if (!toolInvoked || Object.keys(toolResults).length > 0) {
+          return { success: true, response, toolResults };
+        }
+      }
+
+      return { success: true, toolResults };
+    } catch (error: any) {
+      return {
+        success: false,
+        error: error?.message || 'Agent run failed',
+      };
+    }
   }
 
   /**

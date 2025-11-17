@@ -43,6 +43,24 @@
       ],
       "@betterat/ai/*": [
         "./packages/ai/src/*"
+      ],
+      "@betterat/domains-sailracing": [
+        "./domains/sailracing/src"
+      ],
+      "@betterat/domains-sailracing/*": [
+        "./domains/sailracing/src/*"
+      ],
+      "@betterat/domains-nursing": [
+        "./domains/nursing/src"
+      ],
+      "@betterat/domains-nursing/*": [
+        "./domains/nursing/src/*"
+      ],
+      "@betterat/domains-test": [
+        "./domains/test/src"
+      ],
+      "@betterat/domains-test/*": [
+        "./domains/test/src/*"
       ]
     }
   },
